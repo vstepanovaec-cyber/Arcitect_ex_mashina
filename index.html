@@ -4,6 +4,7 @@
 <meta name="description" content="Architect in the Machine: a multi-agent system that turns a site boundary into a masterplan, 3D massing, apartment layouts and a project-finance pack. Архитектор в машине: генеративное проектирование жилых районов.">
 <link rel="alternate" hreflang="ru" href="https://vstepanovaec-cyber.github.io/Arcitect_ex_mashina/?lang=ru">
 <link rel="alternate" hreflang="en" href="https://vstepanovaec-cyber.github.io/Arcitect_ex_mashina/?lang=en">
+<script type="module">document.querySelectorAll('.qtabs button').forEach(b=>b.addEventListener('click',()=>{document.getElementById('qmv').src=b.dataset.src;document.querySelectorAll('.qtabs button').forEach(x=>x.setAttribute('aria-pressed',x===b))}))</script>
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
 <style>:root{--ink:#3a3835;--grey:#7a746b;--line:#dcd7cd;--paper:#fbfaf6;--dark:#ece8df;--acc:#4c4a46;--accsoft:#e6e2da;--zebra:#f6f4f0}
 *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font:16px/1.55 "Inter", "Segoe UI", Roboto, Arial, sans-serif;color:var(--ink);background:var(--paper)}
@@ -36,6 +37,8 @@ model-viewer{display:block}
 
 .hero .in.one{grid-template-columns:1fr;max-width:1100px} .hero .in.one>div{max-width:820px}
 .band{background:#fff;border-bottom:1px solid #e6e1d8} .band figure{max-width:1300px;margin:0 auto;padding:28px 20px 18px} .band img{width:100%;height:auto;border:none;display:block} .band figcaption{text-align:center;margin-top:10px}
+
+.qtabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px} .qtabs button{font:inherit;font-size:14px;padding:6px 12px;border:1px solid #3a3835;background:#fff;color:#3a3835;cursor:pointer} .qtabs button[aria-pressed=true]{background:#3a3835;color:#fff}
 </style></head><body>
 
 <nav><div class="navin"><span class="brand"><span lang="ru">Архитектор в машине</span><span lang="en">Architect in the Machine</span></span><a href="#for"><span lang="ru">Кому</span><span lang="en">Who it is for</span></a><a href="#method"><span lang="ru">Метод</span><span lang="en">Method</span></a><a href="#new"><span lang="ru">Что нового</span><span lang="en">What’s new</span></a><a href="#run"><span lang="ru">Свежий прогон</span><span lang="en">Latest run</span></a><a href="#pilot"><span lang="ru">Пилотный прогон</span><span lang="en">Pilot run</span></a><a href="#limits"><span lang="ru">Ограничения</span><span lang="en">Limits</span></a><a href="#author"><span lang="ru">Автор</span><span lang="en">Author</span></a>
@@ -120,7 +123,12 @@ model-viewer{display:block}
 <figure><img src="img/v3_q3.jpg" alt="concept 3" loading="lazy"><figcaption><span lang="ru">«Павильоны в парке» — 7 этажей, инсоляция 80%.</span><span lang="en">“Pavilions in the park” — 7 floors, 80% daylight compliance.</span></figcaption></figure>
 </div>
 <figure><img src="img/v3_facades.jpg" alt="facades" loading="lazy"><figcaption><span lang="ru">Те же три замысла в развёртках: палитра, материал, ритм окон, первый этаж, лоджии — с опорой на карточки базы.</span><span lang="en">The same three concepts as elevations: palette, material, window rhythm, ground floor, loggias — each grounded in knowledge cards.</span></figcaption></figure>
-<figure><model-viewer src="img/v3_model.glb" camera-controls auto-rotate camera-orbit="-35deg 52deg 80%" min-camera-orbit="auto auto 10%" environment-image="neutral" tone-mapping="neutral" shadow-intensity="1" shadow-softness="0.6" exposure="0.75" style="background:#efece6" loading="lazy" alt="3D model"></model-viewer><figcaption><span lang="ru">3D-модель фрагмента свежего прогона с фасадами по замыслам — вращайте мышью, колесо — приближение.</span><span lang="en">3D model of a fragment from the latest run, façades by concept — drag to rotate, scroll to zoom.</span></figcaption></figure>
+<figure class="q3d"><div class="qtabs" role="group">
+<button data-src="img/v3_q1.glb" aria-pressed="true"><span lang="ru">«Тихое набережное каре»</span><span lang="en">“Quiet waterfront courtyard”</span></button>
+<button data-src="img/v3_q2.glb" aria-pressed="false"><span lang="ru">«Гребёнка к воде»</span><span lang="en">“Comb to the water”</span></button>
+<button data-src="img/v3_q3.glb" aria-pressed="false"><span lang="ru">«Павильоны в парке»</span><span lang="en">“Pavilions in the park”</span></button></div>
+<model-viewer id="qmv" src="img/v3_q1.glb" camera-controls auto-rotate camera-orbit="-35deg 60deg 70%" min-camera-orbit="auto auto 15%" environment-image="neutral" tone-mapping="neutral" shadow-intensity="1" shadow-softness="0.6" exposure="0.8" style="background:#efece6" alt="3D model"></model-viewer>
+<figcaption><span lang="ru">Тот же квартал в 3D: три замысла с фасадами — переключайте вкладки, вращайте мышью, колесо — приближение.</span><span lang="en">The same block in 3D: three concepts with façades — switch tabs, drag to rotate, scroll to zoom.</span></figcaption></figure>
 <p class="btns"><span lang="ru">Полный буклет прогона:</span><span lang="en">Full run booklet:</span> <a href="booklet_ru.pdf">PDF</a><span lang="ru"></span><span lang="en"> (Russian)</span></p>
 <h3><span lang="ru">Квартиры «по плате»</span><span lang="en">Apartments “by board”</span></h3>
 <p lang="ru">Каждая секция проходит цепочку: каркас «ядро + пилоны» → коробки квартир по осям → планировки → судья → приёмка R01–R19. Несущий железобетон — тёмным, стены, перегородки, двери и окна — светлым.</p><p lang="en">Each section runs a chain: “core + piers” structure → apartment boxes on the grid → layouts → judge → acceptance R01–R19. Load-bearing concrete in dark grey; walls, partitions, doors and windows in light grey.</p>
