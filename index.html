@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Архитектор в машине — исследовательский проект</title>
+<html lang="ru" data-lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Архитектор в машине — генеративное проектирование жилых районов</title>
+<meta name="description" content="Architect in the Machine: a multi-agent system that turns a site boundary into a masterplan, 3D massing, apartment layouts and a project-finance pack. Архитектор в машине: генеративное проектирование жилых районов.">
+<link rel="alternate" hreflang="ru" href="https://vstepanovaec-cyber.github.io/Arcitect_ex_mashina/?lang=ru">
+<link rel="alternate" hreflang="en" href="https://vstepanovaec-cyber.github.io/Arcitect_ex_mashina/?lang=en">
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
-<style>
-:root{--ink:#3a3835;--grey:#7a746b;--line:#dcd7cd;--paper:#fbfaf6;--dark:#ece8df;--acc:#4c4a46;--accsoft:#e6e2da;--zebra:#f6f4f0}
+<style>:root{--ink:#3a3835;--grey:#7a746b;--line:#dcd7cd;--paper:#fbfaf6;--dark:#ece8df;--acc:#4c4a46;--accsoft:#e6e2da;--zebra:#f6f4f0}
 *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font:16px/1.55 "Inter", "Segoe UI", Roboto, Arial, sans-serif;color:var(--ink);background:var(--paper)}
-nav{position:sticky;top:0;z-index:5;background:rgba(251,250,246,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)} nav div{max-width:1040px;margin:0 auto;padding:10px 20px;display:flex;gap:18px;flex-wrap:wrap;font-size:13px} nav a{color:var(--ink);text-decoration:none;border-bottom:2px solid transparent} nav a:hover{border-color:var(--acc)}
+nav{position:sticky;top:0;z-index:5;background:rgba(251,250,246,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}  nav a{color:var(--ink);text-decoration:none;border-bottom:2px solid transparent} nav a:hover{border-color:var(--acc)}
 .hero{background:var(--dark);color:var(--ink)} .hero .in{max-width:1100px;margin:0 auto;padding:48px 20px 36px;display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:center} .hero img{border:none;background:none} .hero .lead{color:var(--ink)} .hero .meta{color:var(--grey)} .hero h1{color:var(--ink)} .hero .kick{color:var(--acc);text-transform:uppercase;letter-spacing:.12em;font-size:12px;margin-bottom:10px}
 @media(max-width:800px){.hero .in{grid-template-columns:1fr}}
 header{padding:64px 20px 32px;max-width:1040px;margin:0 auto} h1{font-size:40px;line-height:1.1;margin:0 0 12px;font-weight:700;letter-spacing:-.01em}
@@ -20,128 +22,167 @@ img{max-width:100%;height:auto;display:block;border:1px solid var(--line);backgr
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:14px 0 22px;background:var(--dark);padding:16px;border:1px solid var(--line)} .facts div{text-align:center} .facts b{display:block;font-size:26px;letter-spacing:-.02em} .facts span{font-size:12px;color:var(--grey);text-transform:uppercase;letter-spacing:.06em}
 .card .why{margin-top:10px;padding-top:8px;border-top:1px solid var(--line);font-size:13.5px;color:var(--grey)} .card ul{margin:6px 0 0;padding-left:18px;font-size:14.5px} .card li{margin:3px 0} ul{padding-left:20px} li{margin:4px 0} .cta{border:2px solid var(--ink);padding:20px;margin-top:20px;background:#fff}
 a{color:var(--acc)} .steps li{margin:8px 0} .author{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;border-top:1px solid var(--line);padding-top:16px} .author img{width:170px;border:1px solid var(--line)} @media(max-width:600px){.author{grid-template-columns:1fr}} footer{border-top:1px solid var(--line);padding:24px 20px;color:var(--grey);font-size:13px;max-width:1040px;margin:0 auto}
+[data-lang="ru"] [lang="en"],[data-lang="en"] [lang="ru"]{display:none!important}
+nav .navin{max-width:1100px;margin:0 auto;padding:10px 20px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;font-size:14px}
+nav a{text-decoration:none;color:var(--ink)} nav a:hover{color:var(--grey)} nav .brand{font-weight:700;margin-right:6px}
+.langsw{margin-left:auto;display:inline-flex;border:1px solid var(--ink)} .langsw button{font:inherit;font-size:13px;padding:4px 10px;border:0;background:transparent;color:var(--ink);cursor:pointer}
+.langsw button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px} .btn{display:inline-block;padding:10px 18px;background:var(--ink);color:var(--paper);text-decoration:none;font-weight:600;border:2px solid var(--ink)} .btn.ghost{background:transparent;color:var(--ink)}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.newlist li{margin:8px 0} .contacts{margin-top:14px}
+.facts b{display:block}
+@media(max-width:700px){nav .navin a:not(.keep){display:none} h1{font-size:32px}}
+model-viewer{display:block}
+
+.hero .in.one{grid-template-columns:1fr;max-width:1100px} .hero .in.one>div{max-width:820px}
+.band{background:#fff;border-bottom:1px solid #e6e1d8} .band figure{max-width:1300px;margin:0 auto;padding:28px 20px 18px} .band img{width:100%;height:auto;border:none;display:block} .band figcaption{text-align:center;margin-top:10px}
 </style></head><body>
-<nav><div><a href="#idea">Идея</a><a href="#method">Метод</a><a href="#run">Прогон</a><a href="#figure">Фигура</a><a href="#plans">Замыслы</a><a href="#volume">Объём</a><a href="#flats">Планировки</a><a href="#money">Экономика</a><a href="#limits">Ограничения</a><a href="#author">Об авторе</a><a href="#join">Присоединиться</a></div></nav>
-<section class="hero"><div class="in">
-<div><p class="kick">Личный исследовательский проект · генеративное проектирование жилья · 2026</p>
-<h1>Архитектор в машине</h1>
-<p class="lead">Система, которая от границы участка и программы доходит до мастер-плана, объёмов кварталов и планировок этажей — и объясняет каждое решение. Не «нейросеть рисует картинку», а три слоя: геометрическое ядро, нормы как код и агент-планировщик с базой знаний из 14 268 карточек и 51 799 связей, дистиллированной из 53 книг и стандартов.</p>
-<p class="meta">Ниже — один полный прогон на реальном участке в Екатеринбурге, с честными ограничениями. Приглашаю к тестированию и соавторству.</p></div>
-<div><img src="img/all3d.jpg" alt="3D всей территории"></div>
+
+<nav><div class="navin"><span class="brand"><span lang="ru">Архитектор в машине</span><span lang="en">Architect in the Machine</span></span><a href="#for"><span lang="ru">Кому</span><span lang="en">Who it is for</span></a><a href="#method"><span lang="ru">Метод</span><span lang="en">Method</span></a><a href="#new"><span lang="ru">Что нового</span><span lang="en">What’s new</span></a><a href="#run"><span lang="ru">Свежий прогон</span><span lang="en">Latest run</span></a><a href="#pilot"><span lang="ru">Пилотный прогон</span><span lang="en">Pilot run</span></a><a href="#limits"><span lang="ru">Ограничения</span><span lang="en">Limits</span></a><a href="#author"><span lang="ru">Автор</span><span lang="en">Author</span></a>
+<span class="langsw" role="group" aria-label="Language"><button data-set="ru">RU</button><button data-set="en">EN</button></span></div></nav>
+
+<section class="hero"><div class="in one">
+<div>
+<p lang="ru" class="kick">Личный исследовательский проект · генеративное проектирование жилых районов · 2026</p><p lang="en" class="kick">Independent research project · generative design of residential districts · 2026</p>
+<h1><span lang="ru">Архитектор в машине</span><span lang="en">Architect in the Machine</span></h1>
+<p lang="ru" class="lead">От границы участка до мастер-плана, кварталов в объёме, квартир и пакета для банка — за один прогон, без ручной сборки. Каждое решение объяснено и привязано к норме.</p><p lang="en" class="lead">From a site boundary to a masterplan, 3D massing, apartment layouts and a bank-ready financing pack — in a single run, with no manual assembly. Every decision is explained and traced to a building code.</p>
+<p lang="ru" class="meta">Экспресс-эскиз участка — 5–9 минут; на проверке из 74 участков в 96% случаев отклонение в пределах ±10%. Работает в закрытом контуре: данные не покидают периметр.</p><p lang="en" class="meta">Express site study in 5–9 minutes; across a 74-site test, 96% of results landed within ±10%. Runs on-premises: your data never leaves your perimeter.</p>
+<p class="btns"><a class="btn" href="mailto:v.stepanov.aec@gmail.com"><span lang="ru">Написать автору</span><span lang="en">Contact the author</span></a><a class="btn ghost" href="booklet_ru.pdf"><span lang="ru">Буклет прогона (PDF)</span><span lang="en">Run booklet (PDF, Russian)</span></a></p>
+</div>
 </div></section>
+<section class="band"><figure><img src="img/v3_sequence.jpg" alt="Site analysis, masterplan, 3D model"><figcaption><span lang="ru">Один прогон: анализ участка → генплан → объёмная модель. Свежий прогон, октябрь 2026.</span><span lang="en">One run: site analysis → masterplan → 3D massing. Latest run, October 2026.</span></figcaption></figure></section>
+
 <main>
-<h2 id="idea">Идея</h2>
-<p>Концептуальная стадия проектирования жилого района — это тысячи решений, которые опытный архитектор принимает «в голове»: где главные улицы, какой квартал, как раскрыть двор к солнцу, что положить в первые этажи. Я собираю систему, в которой эти решения принимает машина, но так, как их принимает человек: сначала замысел, потом форма, потом проверка нормой, потом точечная правка с сохранением замысла. Каждое решение записывается в журнал с родословной — карточками знаний, на которые оно опиралось.</p>
-<h2 id="method">Метод: три слоя, одна база знаний, ноль облаков</h2>
+<h2 id="for"><span lang="ru">Кому и зачем</span><span lang="en">Who it is for</span></h2>
+<div class="grid">
+<div class="card"><h4><span lang="ru">Девелоперу: брать участок или нет</span><span lang="en">Developers: buy the site or not</span></h4>
+<p lang="ru">Решение о земле стоит миллиарды, а оценка занимает недели. Система за один прогон показывает, что и сколько можно построить, как это выглядит и сколько это стоит — до покупки участка.</p><p lang="en">A land decision is worth billions, yet a feasibility study takes weeks. In one run the system shows what can be built, how it looks and what it costs — before you buy the land.</p></div>
+<div class="card"><h4><span lang="ru">Банку: пакет проектного финансирования</span><span lang="en">Lenders: project-finance pack</span></h4>
+<p lang="ru">Стресс-тест по девяти сценариям, ковенанты, сводка затрат, поток денег по годам и очередям — в формате, привычном кредитному комитету.</p><p lang="en">Nine-scenario stress test, covenants, cost summary and cash flow by year and phase — in the format a credit committee expects.</p></div>
+<div class="card"><h4><span lang="ru">Проектировщику: черновик, который не стыдно править</span><span lang="en">Architects: a draft worth refining</span></h4>
+<p lang="ru">Три именованных замысла, нормоконтроль до показа человеку, планировки с приёмкой по 19 правилам. Архитектор тратит время на замысел, а не на рутину.</p><p lang="en">Three named design concepts, code checks before anyone sees a drawing, apartment plans checked against 19 acceptance rules. The architect spends time on ideas, not routine.</p></div>
+</div>
+
+<h2 id="method"><span lang="ru">Метод: три слоя, одна база знаний, ноль облаков</span><span lang="en">Method: three layers, one knowledge base, zero cloud</span></h2>
 <div class="facts">
-<div><b>14 268</b><span>карточек знаний</span></div>
-<div><b>51 799</b><span>связей между ними</span></div>
-<div><b>53</b><span>источника: 26 книг, 27 норм и стандартов</span></div>
-<div><b>32</b><span>стиля мастеров</span></div>
-<div><b>12</b><span>агентов-ролей</span></div>
-<div><b>117</b><span>чертежей в основе солвера планировок</span></div>
+<div><b>14 268</b><span lang="ru">карточек знаний</span><span lang="en">knowledge cards</span></div>
+<div><b>51 799</b><span lang="ru">связей между ними</span><span lang="en">links between them</span></div>
+<div><b>53</b><span lang="ru">источника: 26 книг, 27 норм</span><span lang="en">sources: 26 books, 27 codes</span></div>
+<div><b>32</b><span lang="ru">стиля мастеров</span><span lang="en">architect styles</span></div>
+<div><b>12</b><span lang="ru">агентов-ролей</span><span lang="en">agent roles</span></div>
+<div><b>19</b><span lang="ru">правил приёмки квартир</span><span lang="en">apartment acceptance rules</span></div>
 </div>
 <div class="grid">
-<div class="card"><h4>1. Геометрическое ядро — детерминированное</h4>
-<ul><li>окружение в 3 км: сопряжения, притяжения, вода, гравитационная модель потоков</li>
-<li>словарь мега-фигур территории: хребет, гребёнка, лестница, пальцы, ожерелье</li>
-<li>районы → улицы с профилями → кварталы → поле высот → массинг</li>
-<li>инсоляция каждого окна с реальными соседями, пожарные разрывы</li>
-<li>349 га → 96 кварталов → ~92 тыс. квартир за один прогон</li></ul>
-<p class="why">Без языковых моделей: один вход — один результат. Каждый шаг воспроизводим и проверяем.</p></div>
-<div class="card"><h4>2. Нормы как код</h4>
-<ul><li>СП 42, 54, 59, 4, 1, 113, 396; СанПиН 1.2.3685; ГОСТ Р 57795; ПЗЗ; РНГП — переведены в исполняемые правила</li>
-<li>норма убивает вариант, правило ставит диагноз: какая норма, где и в какую сторону лечится</li>
-<li>«светофор» нормоконтроля по каждому кварталу</li>
-<li>региональные нормы подключаются отдельным модулем</li></ul>
-<p class="why">Нормоконтроль происходит до того, как вариант увидит человек, — а не после экспертизы.</p></div>
-<div class="card"><h4>3. Агент-планировщик — предлагает, но не рисует</h4>
-<ul><li>12 ролей: мега-фигура, замысел, зонирование, дизайн, фасад, планировки, жюри карт, жюри рендеров, экономика, инфляция, рынок, буклет</li>
-<li>три именованных замысла на территорию: ось, ткань, фронт, ядро, парк, доминанта</li>
-<li>координат не выдаёт — геометрию строит ядро; критик судит до нормоконтроля, жюри смотрит карты глазами</li>
-<li>у каждого решения — родословная: карточки, на которые оно опиралось</li></ul>
-<p class="why">Любая модель через OpenAI-совместимый API — Kimi, Qwen, GigaChat, локальный vLLM. Работает в защищённом контуре заказчика: данные не покидают периметр.</p></div>
-<div class="card"><h4>База знаний — насмотренность, а не каталог</h4>
-<ul><li>14 268 карточек: 4 364 паттерна, 3 256 эвристик, 3 223 параметра, 2 125 прецедентов, 1 268 методов, 32 стиля</li>
-<li>51 799 связей: карточки ссылаются на прецеденты, прецеденты — на нормы</li>
-<li>26 книг: Leupen, Schneider, Sherwood, Metric Handbook, Нойферт, Space Syntax, Spacematrix, DASH, Gehl, Sim, Urban Design Compendium, TOD Standard…</li>
-<li>27 стандартов и норм: СП, СанПиН, ГОСТ, Стандарт ДОМ.РФ</li>
-<li>32 стиля: 22 мастера (Сиза, Diener &amp; Diener, MVRDV, Baumschlager Eberle, Chipperfield, Herzog &amp; de Meuron…) и 10 направлений</li></ul>
-<p class="why">Каждая карточка — со ссылкой на источник и страницу. Карточка штрафует, норма убивает. База растёт с каждым прогоном.</p></div>
+<div class="card"><h4><span lang="ru">1. Геометрическое ядро — детерминированное</span><span lang="en">1. Deterministic geometry core</span></h4>
+<ul><li><span lang="ru">окружение в 3 км: сопряжения, притяжения, вода, гравитационная модель потоков</span><span lang="en">3 km context: access points, attractors, water, gravity model of trips</span></li>
+<li><span lang="ru">фигура территории → районы → улицы с профилями → кварталы → поле высот → массинг</span><span lang="en">site figure → districts → streets with cross-sections → blocks → height field → massing</span></li>
+<li><span lang="ru">каркас «ядро + пилоны», квартиры по осям, инсоляция, пожарные разрывы</span><span lang="en">“core + piers” structural grid, apartments on structural axes, daylight, fire separations</span></li></ul>
+<p lang="ru" class="why">Без языковых моделей: один вход — один результат. Каждый шаг воспроизводим.</p><p lang="en" class="why">No language models here: same input, same output. Every step is reproducible.</p></div>
+<div class="card"><h4><span lang="ru">2. Нормы как код</span><span lang="en">2. Building codes as code</span></h4>
+<ul><li><span lang="ru">СП 42, 54, 59, 4, 1, 113, 396; СанПиН; ГОСТ Р 57795; ПЗЗ; РНГП — исполняемые правила</span><span lang="en">Russian codes (SP 42, 54, 59, 4, 1, 113, 396; SanPiN; GOST R 57795; zoning) as executable rules</span></li>
+<li><span lang="ru">норма убивает вариант, правило ставит диагноз: где и в какую сторону лечится</span><span lang="en">a code rejects an option; a rule diagnoses where and how to fix it</span></li>
+<li><span lang="ru">проверщик по стадиям: «норма / внимание / брак» с причиной</span><span lang="en">stage checker: “pass / warning / fail” with a reason</span></li></ul>
+<p lang="ru" class="why">Нормоконтроль происходит до того, как вариант увидит человек.</p><p lang="en" class="why">Compliance is checked before a human ever sees the option.</p></div>
+<div class="card"><h4><span lang="ru">3. Агенты предлагают, но не рисуют</span><span lang="en">3. Agents propose, they don’t draw</span></h4>
+<ul><li><span lang="ru">12 ролей: фигура, замысел, зонирование, фасад, планировки, жюри, экономика, банк…</span><span lang="en">12 roles: figure, concept, zoning, façade, layouts, juries, economics, bank…</span></li>
+<li><span lang="ru">координат не выдают — геометрию строит ядро; жюри смотрит карты глазами</span><span lang="en">they never output coordinates — the core builds geometry; juries review the maps visually</span></li>
+<li><span lang="ru">у каждого решения — родословная: карточки и нормы, на которые оно опиралось</span><span lang="en">every decision has a lineage: the cards and codes it relied on</span></li></ul>
+<p lang="ru" class="why">Любая модель через OpenAI-совместимый API — GigaChat, Qwen, Kimi, локальный vLLM.</p><p lang="en" class="why">Any model via an OpenAI-compatible API — GigaChat, Qwen, Kimi, local vLLM.</p></div>
+<div class="card"><h4><span lang="ru">База знаний — насмотренность, а не каталог</span><span lang="en">Knowledge base: trained eye, not a catalogue</span></h4>
+<ul><li><span lang="ru">4 364 паттерна, 3 256 эвристик, 3 223 параметра, 2 125 прецедентов, 1 268 методов</span><span lang="en">4,364 patterns, 3,256 heuristics, 3,223 parameters, 2,125 precedents, 1,268 methods</span></li>
+<li><span lang="ru">Leupen, Schneider, Sherwood, Metric Handbook, Нойферт, Space Syntax, Spacematrix, Gehl…</span><span lang="en">Leupen, Schneider, Sherwood, Metric Handbook, Neufert, Space Syntax, Spacematrix, Gehl…</span></li>
+<li><span lang="ru">22 мастера и 10 направлений: Таут, Май, Аалто, Шарун, Колхофф, Baumschlager Eberle…</span><span lang="en">22 masters and 10 movements: Taut, May, Aalto, Scharoun, Kollhoff, Baumschlager Eberle…</span></li></ul>
+<p lang="ru" class="why">Каждая карточка — со ссылкой на источник и страницу. Карточка штрафует, норма убивает.</p><p lang="en" class="why">Every card cites its source and page. A card penalises; a code rejects.</p></div>
 </div>
-<h2 id="run">Что уже умеет — на живом участке</h2>
-<p>Заказчиком задан участок площадью 348,9 га на юго-западном берегу Верх-Исетского водохранилища в Екатеринбурге и целевая программа застройки суммарно 7 974,4 тыс. м²: жильё — 6 349,0, офисы — 597,4, социальные объекты — 433,5, паркинги — 273,4, торговля — 214,6, гостиницы — 94,1, инженерные сооружения — 2,0, прочие функции — 10,4 тыс. м². Отдельное указание касалось архитектуры: работать в современных стилях и в языке признанных мастеров по заданному реестру. Всё остальное — распределение объёмов по территории, типологию застройки, высотность, структуру кварталов и общественных пространств — проект решал самостоятельно.</p>
-<ol class="steps">
-<li><b>Окружение и потоки.</b> Сопряжения с городом, притяжения, вода; грубая гравитационная модель поездок — главные коридоры держат 49% движения.</li>
-<li><b>Мега-фигура.</b> Словарь фигур территории (хребет, гребёнка, лестница, пальцы, ожерелье…) собирается на якорях места; агент предлагает, ядро строит и меряет по потокам, жюри выбирает.</li>
-<li><b>Три замысла до карты.</b> Каждый — именованный, с идеей и опорой на карточки; исполняется ядром в районы, улицы с профилями (асфальт, общественный транспорт, вело, тротуар), кварталы, зелёные цепи, поле высот.</li>
-<li><b>Массинг каждого квартала.</b> Фигура (каре, подкова, гребёнка…), стиль мастера, этажность; инсоляция всех окон с реальными соседями; пожарные разрывы.</li>
-<li><b>Квартирография.</b> Солвер по графу зависимостей, измеренному на 117 чертежах; проверка сеткой Кляйна — семейством корпусов по ширине и глубине.</li>
-<li><b>Экономика.</b> Прогноз цены на участке, себестоимость от данных заказчика с реальной инфляцией, экономический гейт — программа выводится в плюс до фигуры и массинга; паркинг по норме, фазы, поток по кварталам.</li>
-</ol>
-<figure><img src="img/context.jpg" alt="Участок и окружение"><figcaption>Участок и окружение в 3 км: съезды, притяжения, коридоры потоков.</figcaption></figure>
-<h3 id="figure">Мега-фигура</h3>
-<ul><li><b>«Ступени к воде»</b> (лестница) — жюри 8/10, держит 49% из 49% потоков. Ванкувер, Coal Harbour/Yaletown — ступенчатый силуэт к воде с регламентом видовых коридоров (View Protection Guidelines); остриё клина на берегу — как зелёные прорези Хаммарбю</li>
-<li><b>«Зелёные зубья водохранилища»</b> (гребёнка) — жюри 6/10, держит 46% из 49% потоков. «План пяти пальцев» Копенгагена (1947) в инверсии — пальцами становится зелень от воды; второй слой — гребёнка Хаммарбю Шёстад, где рёбра ткани спускаются к бухте, а зелёные клинья входят между ними</li>
-<li><b>«Гребёнка к Исети: хребет на тракте, рёбра к воде»</b> (гребёнка) — жюри 5/10, держит 46% из 49% потоков. Хаммарбю-Шёстад (Стокгольм): спина-бульвар с зелёными клиньями к бухте; по духу — та же звезда, но развёрнутая веером на берег</li></ul>
-<figure><img src="img/megaform.jpg" alt="Мега-фигура"><figcaption>Выбранная фигура «Ступени к воде»: рельсы, ступени, зелёные пустоты между ступенями.</figcaption></figure>
-<h3 id="plans">Три замысла</h3>
-<div class="grid"><div class="card"><h4>v1 «Исетская гребёнка»</h4>
-<p class="meta">критик 6/10 · жюри по карте 5/10</p>
-<p>Новый городской край между Московским трактом и Верх-Исетским водохранилищем: деловой хребет-улица вдоль тракта (части 7–8) и жилые рёбра периметральных кварталов, которые ломаными линиями — не линейкой — текут к набережной. Торговля растворена в активных первых этажах улиц, отдельного ТРЦ нет; зелень — узкие линейные скверы между рёбрами плюс парк-сердце в центральной части 9. Силуэт — градиент вдоль каждого ребра: низкая кромка 5–7 эт. у воды → тело 9–12 → деловой хребет → одна кульминация 25 эт. на тракте.</p>
-<p class="small"><b>Сильное:</b> Рисунок читается: рёбра-диагонали тянутся к воде, застройка распределена по всей территории, а не сбита в один ком; ROI 28% рабочий.<br><b>Слабое:</b> Тело 12 этажей и узлы до 23 — вдвое-втрое выше цели 5-7. Зелёные рёбра — не сеть, а осколки: 17 касаний углом, цепь рвётся. Парки 114 га при норме 127 — недобор, хотя открытых пространств 42%: земля уходит в безымянные «три слоя» и треугольные огрызки участков вдоль диагоналей, не в дома и не в нормативный парк.</p></div>
-<div class="card"><h4>v2 «Зелёные зубья: гребёнка наоборот»</h4>
-<p class="meta">критик 7/10 · жюри по карте 7/10</p>
-<p>Пустырь между водохранилищем и Московским трактом зарастает гребёнкой: зелёные зубья тянутся с набережной на юг почти до тракта, жилые рёбра стоят между ними короткой стороной к парку — каждая квартира в 100–150 м от зелени. Дело собрано хребтом вдоль существующих фронтов тракта с доминантой у главного съезда; торговля идёт лентой за пешеходом, отдельного ТРЦ нет. Силуэт: низкий берег — зелёные прорези — гребни 16 эт. — башня-шестерёнка на тракте.</p>
-<p class="small"><b>Сильное:</b> Больше всего земли под дома — 161 га, парки 125 га почти по норме без отъёма у жилья, тело 10 этажей и узлы 20 — самые низкие из трёх. На карте — самая сплошная ткань: широкие ковры застройки на западе и востоке, зелень собрана в немногие крупные клинья, которые реально соединены (7 касаний углом), а не рассыпаны.<br><b>Слабое:</b> ROI 21% — самый низкий. Зубья — это барьеры: 43% зелени в линиях длиннее 300 м режут город на сектора, пешие связи через клинья редки. 88% покрытия тремя слоями — есть пустоты обслуживания. Западная часть ткани близка к машинной решётке. 10 этажей всё равно выше цели 5-7.</p></div>
-<div class="card"><h4>v3 «Исетская гребёнка»</h4>
-<p class="meta">критик 6/10 · жюри по карте 6/10</p>
-<p>Новый городской край между Московским трактом и Верх-Исетским водохранилищем: деловой хребет-улица вдоль тракта (части 7–8) и жилые рёбра периметральных кварталов, которые ломаными линиями — не линейкой — текут к набережной. Торговля растворена в активных первых этажах улиц, отдельного ТРЦ нет; зелень — узкие линейные скверы между рёбрами плюс парк-сердце в центральной части 9. Силуэт — градиент вдоль каждого ребра: низкая кромка 5–7 эт. у воды → тело 9–12 → деловой хребет → одна кульминация 25 эт. на тракте.</p>
-<p class="small"><b>Сильное:</b> Лучший ROI 35%, рёбра к Исети читаются, зелёная сеть связнее, чем в первом (9 касаний углом против 17), деловой земли больше — 19 га.<br><b>Слабое:</b> Парки 108 га при норме 127 — худший недобор, 19 га долга жителям, при этом открытых 41%: земля снова уходит в неучтённые слои. Тело 11 этажей, узлы до 23 — выше цели. Застройка лежит полосами между рёбрами, у диагоналей — треугольные дыры и клочки, равномерного ковра нет.</p></div></div>
-<figure><img src="img/genplan.jpg" alt="Мастер-план"><figcaption>Выбранный вариант v2 «Зелёные зубья: гребёнка наоборот»: кварталы, улицы с профилями, активные первые этажи, зелёный каркас, линии фигуры.</figcaption></figure>
-<div class="grid"><figure><img src="img/genplan_v1.jpg" alt="вариант"></figure><figure><img src="img/genplan_v3.jpg" alt="вариант"></figure></div>
-<figure><img src="img/fragment.jpg" alt="Фрагмент"><figcaption>Фрагмент 800×800 м: кварталы и профили улиц как мультилиния.</figcaption></figure>
-<h3>Мастер-план в числах</h3>
-<div class="kpi">
-<div><b>96</b>жилых участков</div>
-<div><b>8.2 млн м²</b>GBA жилья по ячейкам (оценка сверху)</div>
-<div><b>≈92389</b>квартир</div>
-<div><b>94</b>участков с массингом</div>
-<div><b>37%</b>окон по норме инсоляции (в среднем)</div>
-<div><b>2</b>участков без красного</div>
-</div>
-<figure><img src="img/frag3d.jpg" alt="Фрагмент территории с фасадами"><figcaption>Фрагмент территории крупно: каждый корпус — фасад по рецепту агента для стиля своего мастера, деревья-кубики в зелени.</figcaption></figure>
-<figure><img src="img/all3d.jpg" alt="Массинг в объёме"><figcaption>Весь массинг варианта в объёме: лучший замысел каждой жилой ячейки, белая макетная подача (GLB — в буклете).</figcaption></figure>
-<h3 id="volume">Объём одного участка</h3>
-<figure><img src="img/fdesign.jpg" alt="Фасады по рецептам"><figcaption>Фасады по рецептам агента дизайна фасада: палитра, материал, ритм окон, первый этаж, лоджии, завершение — с опорой на карточки базы.</figcaption></figure>
-<figure><img src="img/facades.jpg" alt="Фасады"><figcaption>Один участок, три замысла массинга: фасады-развёртки в серых тонах, стиль мастера у каждого.</figcaption></figure>
-<figure><img src="img/axon.jpg" alt="Аксонометрии"><figcaption>Те же три замысла в объёме: высоты по разрезам (первый этаж 4.8 м, типовой 3.45 м), соседние кварталы генплана — светлым.</figcaption></figure>
-<figure><model-viewer src="img/model.glb" camera-controls auto-rotate shadow-intensity="0.6" exposure="1.1" alt="3D-модель фрагмента"></model-viewer><figcaption>3D-модель фрагмента территории с фасадами по стилям (GLB): вращайте мышью. Экспорт для Blender/3ds Max — .obj рядом.</figcaption></figure>
-<h3 id="flats">Планировки: этаж режется по графу</h3>
-<p>Корпуса одного участка разрезаны на квартиры солвером по графу зависимостей, измеренному на чертежах типовых этажей: порядок вдоль фронта от стояка, окна как отрезки фасада (тем же шагом, что на фасадах 3D), служебная полоса, коридор, двери только из прихожей и коридора.</p>
 
-<h4>Сетка Кляйна</h4>
-<p>Каждая клетка — корпус своей длины и глубины, нарезанный на квартиры и измеренный: число квартир, брак, недостижимые помещения, дыры, доля общих зон. Зелёная рамка — план без ошибок. Так видно, на каких корпусах солвер уже надёжен, а где нет.</p>
-<figure><img src="img/klein.jpg" alt="Сетка Кляйна"></figure>
-<h3 id="money">Экономика</h3>
-<p>Средняя цена жилья на участке сегодня ≈ 210 тыс руб/м2 (район 188 тыс + 12% за воду и среду); через 3 года: 230 / 265 / 402 тыс по трём сценариям.</p>
-<figure><img src="img/price.jpg" alt="Прогноз цены"><figcaption>Средняя цена жилья на участке: три сценария роста; реальная инфляция — по ставкам банков.</figcaption></figure>
-<p>Средняя цена жилья на участке ≈ 210 тыс руб/м2 (188 тыс по району плюс 12% за воду и среду); через три года — 230, 265 или 402 тыс по трём сценариям. Себестоимость — по данным заказчика: жильё 116 276 руб/м2 при нормативе 108 335; реальная инфляция принята 24,1% в год. Программа заказчика как есть давала минус 1,3% маржи. Гейт довёл её до цели в четыре хода: цена жилья +15% к прогнозу (242 тыс руб/м2), продажа 80% подземных машиномест по 1,2 млн, половина школ и садов за счёт бюджета, этажность +30% на той же земле (~14,6 этажа). Итог: маржа 20,5%, прибыль 357,8 млрд руб, 8,5 года, четыре очереди. Для инвестора: проект прибылен только при выполнении всех четырёх условий.</p>
-<ul><li>программа заказчика как есть — маржа -1.3%</li><li>цена продажи жилья +5% к прогнозу участка (221 тыс руб/м2): позиционирование выше рынка — вода, среда, стили мастеров — маржа 2.9%</li><li>цена продажи жилья +10% к прогнозу участка (232 тыс руб/м2): позиционирование выше рынка — вода, среда, стили мастеров — маржа 6.8%</li><li>цена продажи жилья +15% к прогнозу участка (242 тыс руб/м2): позиционирование выше рынка — вода, среда, стили мастеров — маржа 10.3%</li><li>подземные машиноместа продаются (80% мест по 1.2 млн) — маржа 13.9%</li><li>школы и сады на 50% по программам бюджета (КРТ, нацпроекты) — маржа 17.3%</li><li>этажность жилья +10% на той же земле (тело ~12.1 эт.) — маржа 18.5%</li><li>этажность жилья +20% на той же земле (тело ~13.3 эт.) — маржа 19.5%</li><li>этажность жилья +30% на той же земле (тело ~14.6 эт.) — маржа 20.5%</li></ul>
-<figure><img src="img/finmodel.jpg" alt="Финмодель"></figure>
-<h2 id="limits">Честные ограничения</h2>
-<ul><li>Региональных нормативов Свердловской области в базе нет; соответствие проверяется по общим требованиям, региональную специфику подтверждает проектировщик.</li><li>На глубоких плитах тип квартиры не всегда удерживается, доля МОП вырастает до 24–30%; такие планировки требуют ручной доработки.</li><li>Трёхкомнатных квартир в массинге 820 из 69083; автоматическая перебалансировка типового состава под спрос не реализована.</li><li>Этажность 10 при целевых 5–7 фиксируется как отклонение; снизить её без потери жилой площади система не умеет.</li><li>43% зелени собрано в линии длиннее 300 м; такие клинья режут ткань на сектора, система помечает барьеры, но пешие связи не прокладывает.</li><li>Покрытие тремя слоями — 88%; пустоты обслуживания обнаружены и показаны, автоматически не закрываются.</li><li>Средняя инсоляция 37%, средний отклик СПП -13%; оба показателя зафиксированы, методика их улучшения не встроена.</li></ul>
-<h2 id="author">Об авторе</h2>
-<div class="author"><img src="img/author.jpg" alt="Автор проекта"><div>
-<p>Вадим Степанов — специалист по цифровым технологиям в строительстве: информационное моделирование, цифровые двойники, автоматизация проектирования. Эксперт НИИСФ РААСН и технического комитета Минстроя по информационному моделированию. Пятнадцать лет строит цифровые модели реальных объектов. «Архитектор в машине» — его личное исследование: что происходит, когда опыт проектировщика переносят в машинную систему.</p>
-<p class="small"><a href="https://niisf.org/biblio/glavnaya/stepanov-vadim-valerevich" rel="noopener">Полная биография — на публичной странице автора в библиотеке НИИСФ РААСН</a></p>
-</div></div>
-<h2 id="join">Как присоединиться</h2>
-<div class="cta">
-<p><b>Ищу тестировщиков и соавторов.</b> Полезнее всего сейчас: (1) участки с программой, на которых можно прогнать систему и разобрать результат глазами; (2) архитекторы, готовые критиковать замыслы и планировки — каждое замечание становится карточкой или правилом; (3) данные по себестоимости и рынку регионов; (4) разработчики геометрических солверов.</p>
-<p>Система работает на self-hosted моделях: данные заказчика не покидают его контур. <a href="booklet.pdf">Полный буклет прогона (PDF)</a> — все карты, таблицы по участкам, финмодель и список допущений.</p>
-<p><b>Написать:</b> <a href="mailto:v.stepanov.aec@gmail.com">v.stepanov.aec@gmail.com</a> · Telegram <a href="https://t.me/Vadim_Stepanov_AEC" rel="noopener">@Vadim_Stepanov_AEC</a> · <a href="tel:+79032507609">+7 903 250-76-09</a></p>
+<h2 id="new"><span lang="ru">Что нового в версии октября 2026</span><span lang="en">What’s new in the October 2026 version</span></h2>
+<ul class="newlist"><li><span lang="ru"><b>Банковский пакет проектного финансирования:</b> стресс-тест (цена −10/−20%, темп продаж −30%, себестоимость +10/+20%, срок +6/+12 мес и их сочетание), ковенанты, сводка затрат, поток денег по годам.</span><span lang="en"><b>Project-finance pack:</b> stress test (price −10/−20%, sales pace −30%, cost +10/+20%, delay +6/+12 months and a combined case), covenants, cost summary, cash flow by year.</span></li>
+<li><span lang="ru"><b>Квартирография «по плате»:</b> сначала сценарий жизни и стояки, потом помещения; каждую квартиру проверяет судья по 19 правилам приёмки.</span><span lang="en"><b>Apartment layouts “by board”:</b> living scenario and risers first, then rooms; a judge checks every apartment against 19 acceptance rules.</span></li>
+<li><span lang="ru"><b>Каркас «ядро + пилоны»:</b> оси по несущим элементам, пролёт равен комнате, зоны шахт и продавливания.</span><span lang="en"><b>“Core + piers” structure:</b> grid on load-bearing elements, span equals a room, shaft and punching zones.</span></li>
+<li><span lang="ru"><b>Проверщик по стадиям:</b> каждая стадия получает вердикт «норма / внимание / брак» с причиной.</span><span lang="en"><b>Stage checker:</b> every stage gets a “pass / warning / fail” verdict with the reason.</span></li>
+<li><span lang="ru"><b>Почерк мастеров на фасадах:</b> у каждого района свой стиль, рендер в Blender.</span><span lang="en"><b>Masters’ handwriting on façades:</b> each district gets its own style, rendered in Blender.</span></li>
+<li><span lang="ru"><b>Потребность в рабочих и ресурсах:</b> пик рабочих, человеко-годы, бетон, арматура, вода, электро- и теплонагрузка по очередям.</span><span lang="en"><b>Labour and resources:</b> peak workforce, person-years, concrete, rebar, water, power and heat loads by phase.</span></li></ul>
+
+<h2 id="run"><span lang="ru">Свежий прогон: крупный участок у воды</span><span lang="en">Latest run: a large waterfront site</span></h2>
+<p lang="ru">Территория около 350 га в крупной агломерации, программа почти 4 млн м².</p><p lang="en">About 350 ha in a major metropolitan area, a programme of almost 4 million m².</p>
+<div class="kpi">
+<div><b>80</b><span lang="ru">кварталов посчитано до квартир</span><span lang="en">blocks taken down to apartments</span></div>
+<div><b>567</b><span lang="ru">секций</span><span lang="en">building sections</span></div>
+<div><b>14 047</b><span lang="ru">квартир в домах</span><span lang="en">apartments in buildings</span></div>
+<div><b>2 076 / 2 399</b><span lang="ru">квартир типового этажа прошли приёмку</span><span lang="en">typical-floor apartments passed acceptance</span></div>
+<div><b>112 · 61 · 2</b><span lang="ru">вердиктов: норма · внимание · брак</span><span lang="en">verdicts: pass · warning · fail</span></div>
+<div><b>9</b><span lang="ru">сценариев стресс-теста для банка</span><span lang="en">bank stress-test scenarios</span></div>
 </div>
+<h3><span lang="ru">Один квартал — три замысла</span><span lang="en">One block, three concepts</span></h3>
+<div class="grid3">
+<figure><img src="img/v3_q1.jpg" alt="concept 1" loading="lazy"><figcaption><span lang="ru">«Тихое набережное каре» — 5–11 этажей, инсоляция 75%.</span><span lang="en">“Quiet waterfront courtyard” — 5–11 floors, 75% daylight compliance.</span></figcaption></figure>
+<figure><img src="img/v3_q2.jpg" alt="concept 2" loading="lazy"><figcaption><span lang="ru">«Гребёнка к воде» — 5–6 этажей, инсоляция 71%: ниже нормы, система так и пишет.</span><span lang="en">“Comb to the water” — 5–6 floors, 71% daylight: below the norm, and the system says so.</span></figcaption></figure>
+<figure><img src="img/v3_q3.jpg" alt="concept 3" loading="lazy"><figcaption><span lang="ru">«Павильоны в парке» — 7 этажей, инсоляция 80%.</span><span lang="en">“Pavilions in the park” — 7 floors, 80% daylight compliance.</span></figcaption></figure>
+</div>
+<figure><img src="img/v3_facades.jpg" alt="facades" loading="lazy"><figcaption><span lang="ru">Те же три замысла в развёртках: палитра, материал, ритм окон, первый этаж, лоджии — с опорой на карточки базы.</span><span lang="en">The same three concepts as elevations: palette, material, window rhythm, ground floor, loggias — each grounded in knowledge cards.</span></figcaption></figure>
+<figure><model-viewer src="img/v3_model.glb" camera-controls auto-rotate camera-orbit="-35deg 58deg 38%" min-camera-orbit="auto auto 10%" environment-image="neutral" tone-mapping="neutral" shadow-intensity="1" shadow-softness="0.6" exposure="0.75" style="background:#efece6" loading="lazy" alt="3D model"></model-viewer><figcaption><span lang="ru">3D-модель фрагмента свежего прогона с фасадами по замыслам — вращайте мышью, колесо — приближение.</span><span lang="en">3D model of a fragment from the latest run, façades by concept — drag to rotate, scroll to zoom.</span></figcaption></figure>
+<p class="btns"><span lang="ru">Полный буклет прогона:</span><span lang="en">Full run booklet:</span> <a href="booklet_ru.pdf">PDF</a><span lang="ru"></span><span lang="en"> (Russian)</span></p>
+<h3><span lang="ru">Квартиры «по плате»</span><span lang="en">Apartments “by board”</span></h3>
+<p lang="ru">Каждая секция проходит цепочку: каркас «ядро + пилоны» → коробки квартир по осям → планировки → судья → приёмка R01–R19. Несущий железобетон — тёмным, стены, перегородки, двери и окна — светлым.</p><p lang="en">Each section runs a chain: “core + piers” structure → apartment boxes on the grid → layouts → judge → acceptance R01–R19. Load-bearing concrete in dark grey; walls, partitions, doors and windows in light grey.</p>
+<div class="grid3">
+<figure><img src="img/v3_plan1.jpg" alt="plan 1" loading="lazy"><figcaption><span lang="ru">Типовой этаж секции, все квартиры прошли приёмку.</span><span lang="en">Typical floor; every apartment passed acceptance.</span></figcaption></figure>
+<figure><img src="img/v3_plan2.jpg" alt="plan 2" loading="lazy"><figcaption><span lang="ru">Башня: квартиры вокруг ядра.</span><span lang="en">Tower: apartments around the core.</span></figcaption></figure>
+<figure><img src="img/v3_plan3.jpg" alt="plan 3" loading="lazy"><figcaption><span lang="ru">Секция с повёрнутым ядром.</span><span lang="en">Section with a rotated core.</span></figcaption></figure>
+</div>
+<h3><span lang="ru">Деньги и ресурсы</span><span lang="en">Money and resources</span></h3>
+<p lang="ru">Экономический гейт проверяет программу при целевой марже и, если нужно, ищет рычаги: цена, продажа машиномест, бюджетные программы, этажность. Банковский пакет добавляет стресс-тест и ковенанты, ресурсный модуль — рабочих, бетон, арматуру и инженерные нагрузки по очередям. Все цифры — в буклете прогона.</p><p lang="en">An economic gate tests the programme against a target margin and, if needed, finds levers: price, parking sales, public programmes, height. The bank pack adds a stress test and covenants; the resources module adds workforce, concrete, rebar and utility loads by phase. All figures are in the run booklet.</p>
+
+<h2 id="pilot"><span lang="ru">Пилотный прогон: Екатеринбург, 349 га у водохранилища</span><span lang="en">Pilot run: Yekaterinburg, 349 ha by a reservoir</span></h2>
+<p lang="ru">Первый публичный прогон. Задача заказчика — около 8 млн м² программы и работа в языке признанных мастеров; всё остальное система решала сама: фигура территории, три замысла, кварталы, высотность, экономика.</p><p lang="en">The first public run. The brief: about 8 million m² of programme in the language of recognised masters; everything else — site figure, three concepts, blocks, heights, economics — was decided by the system.</p>
+<figure><img src="img/genplan.jpg" alt="masterplan" loading="lazy"><figcaption><span lang="ru">Выбранный замысел «Зелёные зубья»: кварталы, улицы с профилями, активные первые этажи, зелёный каркас.</span><span lang="en">The chosen concept “Green teeth”: blocks, streets with cross-sections, active ground floors, green network.</span></figcaption></figure>
+<div class="grid"><figure><img src="img/genplan_v1.jpg" alt="v1" loading="lazy"></figure><figure><img src="img/genplan_v3.jpg" alt="v3" loading="lazy"></figure></div>
+<p lang="ru">Три замысла отбирались честно: критик по тексту, жюри по карте. Выбран не самый красивый и не самый прибыльный (ROI 21% против 35%), а самый сбалансированный: больше всего земли под жильё, парки почти по норме, самая низкая этажность.</p><p lang="en">Concepts were judged twice: by a critic on the text and by a jury on the map. The winner was neither the prettiest nor the most profitable (ROI 21% vs 35%), but the most balanced: the most land for housing, parks almost at the norm, the lowest heights.</p>
+<figure><img src="img/all3d.jpg" alt="massing" loading="lazy"><figcaption><span lang="ru">Весь массинг выбранного варианта: лучший замысел каждой жилой ячейки, белая макетная подача.</span><span lang="en">Full massing of the chosen option: the best concept for each housing cell, white-model presentation.</span></figcaption></figure>
+<h3><span lang="ru">Экономический гейт: как программа стала прибыльной</span><span lang="en">Economic gate: how the programme became profitable</span></h3>
+<p lang="ru">Программа заказчика как есть давала минус 1,3% маржи. Гейт довёл её до цели за четыре хода и честно назвал условия: проект прибылен только если выполнены все четыре.</p><p lang="en">The client’s programme as given showed a −1.3% margin. The gate reached the target in four moves and stated the conditions plainly: the project is profitable only if all four hold.</p>
+<ol class="steps"><li><span lang="ru">программа как есть — маржа −1,3%</span><span lang="en">programme as given — margin −1.3%</span></li>
+<li><span lang="ru">цена жилья +15% к прогнозу: позиционирование выше рынка (вода, среда, стили) — 10,3%</span><span lang="en">housing price +15% over forecast: premium positioning (water, setting, styles) — 10.3%</span></li>
+<li><span lang="ru">продажа 80% подземных машиномест — 13,9%</span><span lang="en">selling 80% of underground parking — 13.9%</span></li>
+<li><span lang="ru">половина школ и садов по бюджетным программам — 17,3%</span><span lang="en">half of schools and kindergartens via public programmes — 17.3%</span></li>
+<li><span lang="ru">этажность +30% на той же земле — 20,5%: прибыль 358 млрд ₽, 8,5 года, четыре очереди</span><span lang="en">heights +30% on the same land — 20.5%: profit RUB 358 bn, 8.5 years, four phases</span></li></ol>
+<figure><img src="img/finmodel.jpg" alt="finmodel" loading="lazy"><figcaption><span lang="ru">Поток денег по кварталам и очередям.</span><span lang="en">Cash flow by quarter and phase.</span></figcaption></figure>
+<p><span lang="ru">Буклет пилотного прогона</span><span lang="en">Pilot run booklet</span>: <a href="booklet.pdf">PDF</a><span lang="ru"></span><span lang="en"> (Russian)</span></p>
+
+<h2 id="limits"><span lang="ru">Честные ограничения</span><span lang="en">Honest limits</span></h2>
+<ul><li><span lang="ru">Региональные нормы пока не заведены: проверка идёт по федеральным СП и СанПиН, региональную специфику подтверждает проектировщик.</span><span lang="en">Regional codes are not yet encoded: checks run on federal codes; a designer confirms regional specifics.</span></li>
+<li><span lang="ru">Объёмное решение собирается не для всех кварталов: в свежем прогоне — 77 из 85; незакрытые система показывает, а не прячет.</span><span lang="en">Massing is not solved for every block — 77 of 85 in the latest run; the gaps are shown, not hidden.</span></li>
+<li><span lang="ru">Средняя инсоляция и отклонения от целевой этажности приводятся без подгонки под норму.</span><span lang="en">Average daylight compliance and deviations from target heights are reported as is, not tuned to the norm.</span></li>
+<li><span lang="ru">На глубоких плитах доля общих зон доходит до 24–30%; каре и подковы пока требуют доработки планировок.</span><span lang="en">On deep floor plates common areas reach 24–30%; courtyard and horseshoe blocks still need layout work.</span></li>
+<li><span lang="ru">Квартиры без расчёта инсоляции оцениваются по азимуту фасада; шум и вид на воду не учитываются.</span><span lang="en">Apartments without a daylight calculation are scored by façade azimuth; noise and water views are not yet modelled.</span></li>
+<li><span lang="ru">Числа без источника в рецептах формы и фасадов явно помечены как допущения.</span><span lang="en">Any number in form and façade recipes without a source is explicitly flagged as an assumption.</span></li></ul>
+
+<h2 id="author"><span lang="ru">Об авторе</span><span lang="en">About the author</span></h2>
+<div class="author"><img src="img/author.jpg" alt="Vadim Stepanov"><div>
+<p lang="ru"><b>Вадим Степанов</b> — 17 лет в строительстве и цифровых технологиях: информационное моделирование, цифровые двойники, ИИ в девелопменте. Руководит цифровой трансформацией крупного девелопера; эксперт НИИСФ РААСН и технического комитета ТК 505 «Информационное моделирование», соавтор национального стандарта.</p><p lang="en"><b>Vadim Stepanov</b> — 17 years in construction and digital technology: BIM, digital twins, AI in real estate development. Leads digital transformation at a major developer; expert at the Research Institute of Building Physics (NIISF RAASN) and member of the national BIM standards committee TC 505, co-author of a national standard.</p>
+<p lang="ru">«Архитектор в машине» — его личный исследовательский проект: архитектуру агентов, геометрическое ядро, нормы как код и базу знаний он спроектировал и собрал сам.</p><p lang="en">“Architect in the Machine” is his independent research project: he designed and built the agent architecture, the geometry core, codes-as-code and the knowledge base himself.</p>
+<p class="small"><a href="https://niisf.org/biblio/glavnaya/stepanov-vadim-valerevich" rel="noopener"><span lang="ru">Биография на странице НИИСФ РААСН</span><span lang="en">Biography at NIISF RAASN (in Russian)</span></a> · <a href="https://www.linkedin.com/in/vadim-stepanov-bim-vdc/" rel="noopener">LinkedIn</a></p>
+</div></div>
+<p class="contacts"><b><span lang="ru">Связаться:</span><span lang="en">Contact:</span></b> <a href="mailto:v.stepanov.aec@gmail.com">v.stepanov.aec@gmail.com</a> · Telegram <a href="https://t.me/Vadim_Stepanov_AEC" rel="noopener">@Vadim_Stepanov_AEC</a> · <a href="tel:+79032507609">+7 903 250-76-09</a></p>
 </main>
-<footer>Исследовательский проект. Все карты, планы и цифры на этой странице — результат системы; допущения перечислены в буклете. Портреты мастеров не публикуются на сайте.</footer>
+<footer><span lang="ru">Исследовательский проект. Карты, планы и цифры на странице — результат работы системы; допущения перечислены в буклете.</span><span lang="en">Research project. Maps, plans and figures on this page are produced by the system; assumptions are listed in the booklet.</span></footer>
+
+<script>
+(function(){
+  var KEY='aim-lang', root=document.documentElement;
+  function pick(){
+    var q=new URLSearchParams(location.search).get('lang');
+    if(q==='ru'||q==='en') return q;
+    try{var s=localStorage.getItem(KEY); if(s==='ru'||s==='en') return s;}catch(e){}
+    return (navigator.language||'').toLowerCase().indexOf('ru')===0?'ru':'en';
+  }
+  var TITLES={ru:'Архитектор в машине — генеративное проектирование жилых районов',en:'Architect in the Machine — generative design of residential districts'};
+  function set(l){
+    root.setAttribute('data-lang',l); root.lang=l; document.title=TITLES[l];
+    document.querySelectorAll('.langsw button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.set===l)});
+    try{localStorage.setItem(KEY,l);}catch(e){}
+  }
+  set(pick());
+  document.querySelectorAll('.langsw button').forEach(function(b){b.addEventListener('click',function(){set(b.dataset.set)})});
+})();
+</script>
 </body></html>
