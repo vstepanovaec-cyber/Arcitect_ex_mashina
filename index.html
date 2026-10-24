@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru" data-lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Архитектор в машине — генеративное проектирование жилых районов</title>
-<meta name="description" content="Architect in the Machine: a multi-agent system that turns a site boundary into a masterplan, 3D massing, apartment layouts and a project-finance pack. Архитектор в машине: генеративное проектирование жилых районов.">
+<title>Архитектор в машине — ИИ-контур проектирования и контроля</title>
+<meta name="description" content="Architect in the Machine: an AI loop for design and control — generative district concepts, AI checking of working drawings and as-built records. Архитектор в машине: ИИ-контур проектирования и контроля.">
 <link rel="alternate" hreflang="ru" href="https://vstepanovaec-cyber.github.io/Arcitect_ex_mashina/?lang=ru">
 <link rel="alternate" hreflang="en" href="https://vstepanovaec-cyber.github.io/Arcitect_ex_mashina/?lang=en">
 <script type="module">document.querySelectorAll('.qtabs button').forEach(b=>b.addEventListener('click',()=>{document.getElementById('qmv').src=b.dataset.src;document.querySelectorAll('.qtabs button').forEach(x=>x.setAttribute('aria-pressed',x===b))}))</script>
+<script type="module">const c=document.getElementById('repcar');if(c){const t=c.querySelector('.car-track'),li=[...t.children],d=c.querySelector('.car-dots');let i=0;li.forEach((_,k)=>{const b=document.createElement('button');b.addEventListener('click',()=>go(k));d.appendChild(b)});function go(k){i=(k+li.length)%li.length;li[i].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'});[...d.children].forEach((b,k)=>b.setAttribute('aria-current',k===i))}c.querySelector('.prev').addEventListener('click',()=>go(i-1));c.querySelector('.next').addEventListener('click',()=>go(i+1));t.addEventListener('scroll',()=>{const k=Math.round(t.scrollLeft/li[0].offsetWidth);if(k!==i){i=k;[...d.children].forEach((b,j)=>b.setAttribute('aria-current',j===i))}},{passive:true});go(0)}</script>
 <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
 <style>:root{--ink:#3a3835;--grey:#7a746b;--line:#dcd7cd;--paper:#fbfaf6;--dark:#ece8df;--acc:#4c4a46;--accsoft:#e6e2da;--zebra:#f6f4f0}
 *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font:16px/1.55 "Inter", "Segoe UI", Roboto, Arial, sans-serif;color:var(--ink);background:var(--paper)}
@@ -39,21 +40,98 @@ model-viewer{display:block}
 .band{background:#fff;border-bottom:1px solid #e6e1d8} .band figure{max-width:1300px;margin:0 auto;padding:28px 20px 18px} .band img{width:100%;height:auto;border:none;display:block} .band figcaption{text-align:center;margin-top:10px}
 
 .qtabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px} .qtabs button{font:inherit;font-size:14px;padding:6px 12px;border:1px solid #3a3835;background:#fff;color:#3a3835;cursor:pointer} .qtabs button[aria-pressed=true]{background:#3a3835;color:#fff}
+.loopwrap{max-width:1100px;margin:0 auto;padding:30px 20px 18px} .loop{display:block;max-width:1100px} .loop .lt{font:600 22px/1 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;fill:#3a3835} .loop .ln{font:16px/1 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;fill:#6b6560} .loop a{text-decoration:none} .loop a:hover rect{stroke:#000;stroke-width:3} .loopcap{text-align:center;color:#6b6560;margin:14px auto 0;max-width:820px}
+.h3big{font-size:1.5rem;margin:48px 0 14px;padding-top:10px;border-top:1px solid #e6e1d8} .h4sec{font-size:1.15rem;margin:30px 0 10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start} .grid2.ex figure{margin:0} .grid2.ex img{width:100%;height:auto;background:#fff} .grid2.asb{align-items:center}
+.loop-v{display:none} @media(max-width:800px){.grid2{grid-template-columns:1fr} .loop-h{display:none} .loop-v{display:block;max-width:400px;margin:0 auto}}
+.grid2.ex img{height:360px;object-fit:contain}
+
+
+.car{position:relative;margin:8px 0 24px}
+.car-track{list-style:none;margin:0;padding:0;display:flex;align-items:flex-start;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.car-track::-webkit-scrollbar{display:none}
+.fc{flex:0 0 100%;scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:6px;padding:22px 24px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.fc-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px;font-size:14px;color:#6b6760}
+.fc-badge{padding:3px 9px;border-radius:4px;background:#fbe9e7;color:#b3261e;font-weight:600}
+.fc.amb .fc-badge{background:#f6ecd4;color:#8a5d00}
+.fc h5{font-size:19px;line-height:1.3;margin:0 0 12px;font-weight:600}
+.fc p{margin:0 0 10px;font-size:15px;line-height:1.45;color:#3a3835}
+.fc p span{display:block;font-size:12.5px;color:#8a857c;margin-bottom:2px}
+.fc-req{color:#55524c;font-style:italic}
+.fc-fact{color:#b3261e;font-weight:600}
+.fc.amb .fc-fact{color:#8a5d00;font-weight:500}
+.fc-ctrl{color:#55524c}
+.fc-img{margin:0}
+.fc-img img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:4px}
+.fc-img figcaption{font-size:12.5px;color:#8a857c;margin-top:6px}
+.car-btn{position:absolute;top:44%;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:26px;line-height:1;cursor:pointer;z-index:2;color:#333}
+.car-btn.prev{left:-20px}.car-btn.next{right:-20px}
+.car-dots{display:flex;justify-content:center;gap:8px;margin-top:10px}
+.car-dots button{width:9px;height:9px;border-radius:50%;border:none;background:#d6d1c7;padding:0;cursor:pointer}
+.car-dots button[aria-current=true]{background:#333}
+@media(max-width:800px){.fc{grid-template-columns:1fr;padding:16px}.car-btn.prev{left:-6px}.car-btn.next{right:-6px}}
 </style></head><body>
 
-<nav><div class="navin"><span class="brand"><span lang="ru">Архитектор в машине</span><span lang="en">Architect in the Machine</span></span><a href="#for"><span lang="ru">Кому</span><span lang="en">Who it is for</span></a><a href="#method"><span lang="ru">Метод</span><span lang="en">Method</span></a><a href="#new"><span lang="ru">Что нового</span><span lang="en">What’s new</span></a><a href="#run"><span lang="ru">Свежий прогон</span><span lang="en">Latest run</span></a><a href="#pilot"><span lang="ru">Пилотный прогон</span><span lang="en">Pilot run</span></a><a href="#limits"><span lang="ru">Ограничения</span><span lang="en">Limits</span></a><a href="#author"><span lang="ru">Автор</span><span lang="en">Author</span></a>
+<nav><div class="navin"><span class="brand"><span lang="ru">Архитектор в машине</span><span lang="en">Architect in the Machine</span></span><a href="#loop"><span lang="ru">Контур</span><span lang="en">The loop</span></a><a href="#gen"><span lang="ru">Генерация</span><span lang="en">Generation</span></a><a href="#check"><span lang="ru">Проверка</span><span lang="en">Checking</span></a><a href="#asbuilt"><span lang="ru">Исполнительная</span><span lang="en">As-built</span></a><a href="#expert"><span lang="ru">Экспертиза</span><span lang="en">Expert review</span></a><a href="#author"><span lang="ru">Автор</span><span lang="en">Author</span></a>
 <span class="langsw" role="group" aria-label="Language"><button data-set="ru">RU</button><button data-set="en">EN</button></span></div></nav>
 
 <section class="hero"><div class="in one">
 <div>
-<p lang="ru" class="kick">Личный исследовательский проект · генеративное проектирование жилых районов · 2026</p><p lang="en" class="kick">Independent research project · generative design of residential districts · 2026</p>
+<p lang="ru" class="kick">Личный исследовательский проект · ИИ-контур проектирования и контроля · 2026</p><p lang="en" class="kick">Independent research project · an AI loop for design and control · 2026</p>
 <h1><span lang="ru">Архитектор в машине</span><span lang="en">Architect in the Machine</span></h1>
-<p lang="ru" class="lead">От границы участка до мастер-плана, кварталов в объёме, квартир и пакета для банка — за один прогон, без ручной сборки. Каждое решение объяснено и привязано к норме.</p><p lang="en" class="lead">From a site boundary to a masterplan, 3D massing, apartment layouts and a bank-ready financing pack — in a single run, with no manual assembly. Every decision is explained and traced to a building code.</p>
-<p lang="ru" class="meta">Экспресс-эскиз участка — 5–9 минут; на проверке из 74 участков в 96% случаев отклонение в пределах ±10%. Работает в закрытом контуре: данные не покидают периметр.</p><p lang="en" class="meta">Express site study in 5–9 minutes; across a 74-site test, 96% of results landed within ±10%. Runs on-premises: your data never leaves your perimeter.</p>
+<p lang="ru" class="lead">От границы участка до стройки: система генерирует концепцию, проверяет рабочую документацию и сверяет исполнительную — и каждое решение привязано к пункту нормы.</p><p lang="en" class="lead">From a site boundary to the construction site: the system generates a concept, checks working drawings and verifies as-built records — and every decision is traced to a clause of a code.</p>
+<p lang="ru" class="meta">Генерация: эскиз участка за 5–9 минут, 96% из 74 участков в пределах ±10%. Проверка: 377 листов рабочей документации, 44 подтверждённых нарушения. Работает в закрытом контуре: данные не покидают периметр.</p><p lang="en" class="meta">Generation: a site study in 5–9 minutes, 96% of 74 sites within ±10%. Checking: 377 working-drawing sheets, 44 confirmed violations. Runs on-premises: your data never leaves your perimeter.</p>
 <p class="btns"><a class="btn" href="mailto:v.stepanov.aec@gmail.com"><span lang="ru">Написать автору</span><span lang="en">Contact the author</span></a><a class="btn ghost" href="booklet_ru.pdf"><span lang="ru">Буклет прогона (PDF)</span><span lang="en">Run booklet (PDF, Russian)</span></a></p>
 </div>
 </div></section>
-<section class="band"><figure><img src="img/v3_sequence.jpg" alt="Site analysis, masterplan, 3D model"><figcaption><span lang="ru">Один прогон: анализ участка → генплан → объёмная модель. Свежий прогон, октябрь 2026.</span><span lang="en">One run: site analysis → masterplan → 3D massing. Latest run, October 2026.</span></figcaption></figure></section>
+<section class="band" id="loop"><div class="loopwrap">
+<svg class="loop loop-h" viewBox="0 0 1100 300" width="100%" role="img" aria-label="Loop: generation, drawing checks, as-built">
+<defs><marker id="ahh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#3a3835"/></marker></defs>
+<a href="#gen"><rect x="30" y="60" width="320" height="120" rx="10" fill="#fff" stroke="#3a3835" stroke-width="2"/>
+<text x="190.0" y="100" text-anchor="middle" class="lt" lang="ru">Генерация</text><text x="190.0" y="100" text-anchor="middle" class="lt" lang="en">Generation</text>
+<text x="190.0" y="132" text-anchor="middle" class="ln" lang="ru">74 участка · 96% в ±10%</text><text x="190.0" y="132" text-anchor="middle" class="ln" lang="en">74 sites · 96% within ±10%</text>
+<text x="190.0" y="156" text-anchor="middle" class="ln" lang="ru">5–9 минут на эскиз</text><text x="190.0" y="156" text-anchor="middle" class="ln" lang="en">5–9 min per study</text>
+</a>
+<a href="#check"><rect x="390" y="60" width="320" height="120" rx="10" fill="#fff" stroke="#3a3835" stroke-width="2"/>
+<text x="550.0" y="100" text-anchor="middle" class="lt" lang="ru">Проверка чертежей</text><text x="550.0" y="100" text-anchor="middle" class="lt" lang="en">Drawing checks</text>
+<text x="550.0" y="132" text-anchor="middle" class="ln" lang="ru">377 листов · 44 нарушения</text><text x="550.0" y="132" text-anchor="middle" class="ln" lang="en">377 sheets · 44 violations</text>
+<text x="550.0" y="156" text-anchor="middle" class="ln" lang="ru">3,8 мин на лист</text><text x="550.0" y="156" text-anchor="middle" class="ln" lang="en">3.8 min per sheet</text>
+</a>
+<a href="#asbuilt"><rect x="750" y="60" width="320" height="120" rx="10" fill="#fff" stroke="#3a3835" stroke-width="2"/>
+<text x="910.0" y="100" text-anchor="middle" class="lt" lang="ru">Исполнительная</text><text x="910.0" y="100" text-anchor="middle" class="lt" lang="en">As-built</text>
+<text x="910.0" y="132" text-anchor="middle" class="ln" lang="ru">StroyAct: акты</text><text x="910.0" y="132" text-anchor="middle" class="ln" lang="en">StroyAct: certificates</text>
+<text x="910.0" y="156" text-anchor="middle" class="ln" lang="ru">накопительные ведомости</text><text x="910.0" y="156" text-anchor="middle" class="ln" lang="en">cumulative statements</text>
+</a>
+<line x1="354" y1="120.0" x2="384" y2="120.0" stroke="#3a3835" stroke-width="2" marker-end="url(#ahh)"/>
+<line x1="714" y1="120.0" x2="744" y2="120.0" stroke="#3a3835" stroke-width="2" marker-end="url(#ahh)"/>
+<path d="M910.0 184 V250 H190.0 V190" fill="none" stroke="#3a3835" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#ahh)"/>
+<rect x="430.0" y="234" width="240" height="32" rx="6" fill="#efece6"/>
+<text x="550.0" y="255" text-anchor="middle" class="ln" lang="ru">одна база правил</text><text x="550.0" y="255" text-anchor="middle" class="ln" lang="en">one rule base</text>
+</svg><svg class="loop loop-v" viewBox="0 0 400 560" width="100%" role="img" aria-label="Loop: generation, drawing checks, as-built">
+<defs><marker id="ahv" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#3a3835"/></marker></defs>
+<a href="#gen"><rect x="20" y="20" width="300" height="120" rx="10" fill="#fff" stroke="#3a3835" stroke-width="2"/>
+<text x="170.0" y="60" text-anchor="middle" class="lt" lang="ru">Генерация</text><text x="170.0" y="60" text-anchor="middle" class="lt" lang="en">Generation</text>
+<text x="170.0" y="92" text-anchor="middle" class="ln" lang="ru">74 участка · 96% в ±10%</text><text x="170.0" y="92" text-anchor="middle" class="ln" lang="en">74 sites · 96% within ±10%</text>
+<text x="170.0" y="116" text-anchor="middle" class="ln" lang="ru">5–9 минут на эскиз</text><text x="170.0" y="116" text-anchor="middle" class="ln" lang="en">5–9 min per study</text>
+</a>
+<a href="#check"><rect x="20" y="200" width="300" height="120" rx="10" fill="#fff" stroke="#3a3835" stroke-width="2"/>
+<text x="170.0" y="240" text-anchor="middle" class="lt" lang="ru">Проверка чертежей</text><text x="170.0" y="240" text-anchor="middle" class="lt" lang="en">Drawing checks</text>
+<text x="170.0" y="272" text-anchor="middle" class="ln" lang="ru">377 листов · 44 нарушения</text><text x="170.0" y="272" text-anchor="middle" class="ln" lang="en">377 sheets · 44 violations</text>
+<text x="170.0" y="296" text-anchor="middle" class="ln" lang="ru">3,8 мин на лист</text><text x="170.0" y="296" text-anchor="middle" class="ln" lang="en">3.8 min per sheet</text>
+</a>
+<a href="#asbuilt"><rect x="20" y="380" width="300" height="120" rx="10" fill="#fff" stroke="#3a3835" stroke-width="2"/>
+<text x="170.0" y="420" text-anchor="middle" class="lt" lang="ru">Исполнительная</text><text x="170.0" y="420" text-anchor="middle" class="lt" lang="en">As-built</text>
+<text x="170.0" y="452" text-anchor="middle" class="ln" lang="ru">StroyAct: акты</text><text x="170.0" y="452" text-anchor="middle" class="ln" lang="en">StroyAct: certificates</text>
+<text x="170.0" y="476" text-anchor="middle" class="ln" lang="ru">накопительные ведомости</text><text x="170.0" y="476" text-anchor="middle" class="ln" lang="en">cumulative statements</text>
+</a>
+<line x1="170.0" y1="144" x2="170.0" y2="194" stroke="#3a3835" stroke-width="2" marker-end="url(#ahv)"/>
+<line x1="170.0" y1="324" x2="170.0" y2="374" stroke="#3a3835" stroke-width="2" marker-end="url(#ahv)"/>
+<path d="M324 440.0 H370 V80.0 H330" fill="none" stroke="#3a3835" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#ahv)"/>
+<text transform="translate(382 260.0) rotate(-90)" text-anchor="middle" class="ln" lang="ru">одна база правил</text><text transform="translate(382 260.0) rotate(-90)" text-anchor="middle" class="ln" lang="en">one rule base</text>
+</svg>
+<p class="loopcap"><span lang="ru">Одна база правил: по ней система проектирует, по ней же проверяет чертежи и исполнительную. Поэтому ошибка видна не на стройке, а в день, когда появилась.</span><span lang="en">One rule base: the system designs by it, then checks drawings and as-built records against it. So an error is seen the day it appears, not on site.</span></p>
+</div></section>
+<section class="band"><figure><img src="img/v3_sequence.jpg" alt="Site analysis, masterplan, 3D model"><figcaption><span lang="ru">Генерация за один прогон: анализ участка → генплан → объёмная модель. Октябрь 2026.</span><span lang="en">Generation in one run: site analysis → masterplan → 3D massing. October 2026.</span></figcaption></figure></section>
 
 <main>
 <h2 id="for"><span lang="ru">Кому и зачем</span><span lang="en">Who it is for</span></h2>
@@ -66,7 +144,9 @@ model-viewer{display:block}
 <p lang="ru">Три именованных замысла, нормоконтроль до показа человеку, планировки с приёмкой по 19 правилам. Архитектор тратит время на замысел, а не на рутину.</p><p lang="en">Three named design concepts, code checks before anyone sees a drawing, apartment plans checked against 19 acceptance rules. The architect spends time on ideas, not routine.</p></div>
 </div>
 
-<h2 id="method"><span lang="ru">Метод: три слоя, одна база знаний, ноль облаков</span><span lang="en">Method: three layers, one knowledge base, zero cloud</span></h2>
+<h2 id="gen"><span lang="ru">Генерация: от участка до квартир</span><span lang="en">Generation: from site to apartments</span></h2>
+<p lang="ru">Первая точка контура — «Архитектор в машине»: мультиагентная система, которая за один прогон превращает границу участка в мастер-план, объёмы, фасады, квартиры и пакет для банка.</p><p lang="en">The first point of the loop is “Architect in the Machine”: a multi-agent system that turns a site boundary into a masterplan, massing, façades, apartments and a bank pack in a single run.</p>
+<h3 class="h3big"><span lang="ru">Метод: три слоя, одна база знаний, ноль облаков</span><span lang="en">Method: three layers, one knowledge base, zero cloud</span></h3>
 <div class="facts">
 <div><b>14 268</b><span lang="ru">карточек знаний</span><span lang="en">knowledge cards</span></div>
 <div><b>51 799</b><span lang="ru">связей между ними</span><span lang="en">links between them</span></div>
@@ -98,7 +178,7 @@ model-viewer{display:block}
 <p lang="ru" class="why">Каждая карточка — со ссылкой на источник и страницу. Карточка штрафует, норма убивает.</p><p lang="en" class="why">Every card cites its source and page. A card penalises; a code rejects.</p></div>
 </div>
 
-<h2 id="new"><span lang="ru">Что нового в версии октября 2026</span><span lang="en">What’s new in the October 2026 version</span></h2>
+<h3 class="h3big" id="new"><span lang="ru">Что нового в версии октября 2026</span><span lang="en">What’s new in the October 2026 version</span></h3>
 <ul class="newlist"><li><span lang="ru"><b>Банковский пакет проектного финансирования:</b> стресс-тест (цена −10/−20%, темп продаж −30%, себестоимость +10/+20%, срок +6/+12 мес и их сочетание), ковенанты, сводка затрат, поток денег по годам.</span><span lang="en"><b>Project-finance pack:</b> stress test (price −10/−20%, sales pace −30%, cost +10/+20%, delay +6/+12 months and a combined case), covenants, cost summary, cash flow by year.</span></li>
 <li><span lang="ru"><b>Квартирография «по плате»:</b> сначала сценарий жизни и стояки, потом помещения; каждую квартиру проверяет судья по 19 правилам приёмки.</span><span lang="en"><b>Apartment layouts “by board”:</b> living scenario and risers first, then rooms; a judge checks every apartment against 19 acceptance rules.</span></li>
 <li><span lang="ru"><b>Каркас «ядро + пилоны»:</b> оси по несущим элементам, пролёт равен комнате, зоны шахт и продавливания.</span><span lang="en"><b>“Core + piers” structure:</b> grid on load-bearing elements, span equals a room, shaft and punching zones.</span></li>
@@ -106,7 +186,7 @@ model-viewer{display:block}
 <li><span lang="ru"><b>Почерк мастеров на фасадах:</b> у каждого района свой стиль, рендер в Blender.</span><span lang="en"><b>Masters’ handwriting on façades:</b> each district gets its own style, rendered in Blender.</span></li>
 <li><span lang="ru"><b>Потребность в рабочих и ресурсах:</b> пик рабочих, человеко-годы, бетон, арматура, вода, электро- и теплонагрузка по очередям.</span><span lang="en"><b>Labour and resources:</b> peak workforce, person-years, concrete, rebar, water, power and heat loads by phase.</span></li></ul>
 
-<h2 id="run"><span lang="ru">Свежий прогон: крупный участок у воды</span><span lang="en">Latest run: a large waterfront site</span></h2>
+<h3 class="h3big" id="run"><span lang="ru">Свежий прогон: крупный участок у воды</span><span lang="en">Latest run: a large waterfront site</span></h3>
 <p lang="ru">Территория около 350 га в крупной агломерации, программа почти 4 млн м².</p><p lang="en">About 350 ha in a major metropolitan area, a programme of almost 4 million m².</p>
 <div class="kpi">
 <div><b>80</b><span lang="ru">кварталов посчитано до квартир</span><span lang="en">blocks taken down to apartments</span></div>
@@ -116,7 +196,7 @@ model-viewer{display:block}
 <div><b>112 · 61 · 2</b><span lang="ru">вердиктов: норма · внимание · брак</span><span lang="en">verdicts: pass · warning · fail</span></div>
 <div><b>9</b><span lang="ru">сценариев стресс-теста для банка</span><span lang="en">bank stress-test scenarios</span></div>
 </div>
-<h3><span lang="ru">Один квартал — три замысла</span><span lang="en">One block, three concepts</span></h3>
+<h4 class="h4sec"><span lang="ru">Один квартал — три замысла</span><span lang="en">One block, three concepts</span></h4>
 <div class="grid3">
 <figure><img src="img/v3_q1.jpg" alt="concept 1" loading="lazy"><figcaption><span lang="ru">«Тихое набережное каре» — 5–11 этажей, инсоляция 75%.</span><span lang="en">“Quiet waterfront courtyard” — 5–11 floors, 75% daylight compliance.</span></figcaption></figure>
 <figure><img src="img/v3_q2.jpg" alt="concept 2" loading="lazy"><figcaption><span lang="ru">«Гребёнка к воде» — 5–6 этажей, инсоляция 71%: ниже нормы, система так и пишет.</span><span lang="en">“Comb to the water” — 5–6 floors, 71% daylight: below the norm, and the system says so.</span></figcaption></figure>
@@ -130,23 +210,23 @@ model-viewer{display:block}
 <model-viewer id="qmv" src="img/v3_q1.glb" camera-controls auto-rotate camera-orbit="-35deg 60deg 70%" min-camera-orbit="auto auto 15%" environment-image="neutral" tone-mapping="neutral" shadow-intensity="1" shadow-softness="0.6" exposure="0.8" style="background:#efece6" alt="3D model"></model-viewer>
 <figcaption><span lang="ru">Тот же квартал в 3D: три замысла с фасадами — переключайте вкладки, вращайте мышью, колесо — приближение.</span><span lang="en">The same block in 3D: three concepts with façades — switch tabs, drag to rotate, scroll to zoom.</span></figcaption></figure>
 <p class="btns"><span lang="ru">Полный буклет прогона:</span><span lang="en">Full run booklet:</span> <a href="booklet_ru.pdf">PDF</a><span lang="ru"></span><span lang="en"> (Russian)</span></p>
-<h3><span lang="ru">Квартиры «по плате»</span><span lang="en">Apartments “by board”</span></h3>
+<h4 class="h4sec"><span lang="ru">Квартиры «по плате»</span><span lang="en">Apartments “by board”</span></h4>
 <p lang="ru">Каждая секция проходит цепочку: каркас «ядро + пилоны» → коробки квартир по осям → планировки → судья → приёмка R01–R19. Несущий железобетон — тёмным, стены, перегородки, двери и окна — светлым.</p><p lang="en">Each section runs a chain: “core + piers” structure → apartment boxes on the grid → layouts → judge → acceptance R01–R19. Load-bearing concrete in dark grey; walls, partitions, doors and windows in light grey.</p>
 <div class="grid3">
 <figure><img src="img/v3_plan1.jpg" alt="plan 1" loading="lazy"><figcaption><span lang="ru">Типовой этаж секции, все квартиры прошли приёмку.</span><span lang="en">Typical floor; every apartment passed acceptance.</span></figcaption></figure>
 <figure><img src="img/v3_plan2.jpg" alt="plan 2" loading="lazy"><figcaption><span lang="ru">Башня: квартиры вокруг ядра.</span><span lang="en">Tower: apartments around the core.</span></figcaption></figure>
 <figure><img src="img/v3_plan3.jpg" alt="plan 3" loading="lazy"><figcaption><span lang="ru">Секция с повёрнутым ядром.</span><span lang="en">Section with a rotated core.</span></figcaption></figure>
 </div>
-<h3><span lang="ru">Деньги и ресурсы</span><span lang="en">Money and resources</span></h3>
+<h4 class="h4sec"><span lang="ru">Деньги и ресурсы</span><span lang="en">Money and resources</span></h4>
 <p lang="ru">Экономический гейт проверяет программу при целевой марже и, если нужно, ищет рычаги: цена, продажа машиномест, бюджетные программы, этажность. Банковский пакет добавляет стресс-тест и ковенанты, ресурсный модуль — рабочих, бетон, арматуру и инженерные нагрузки по очередям. Все цифры — в буклете прогона.</p><p lang="en">An economic gate tests the programme against a target margin and, if needed, finds levers: price, parking sales, public programmes, height. The bank pack adds a stress test and covenants; the resources module adds workforce, concrete, rebar and utility loads by phase. All figures are in the run booklet.</p>
 
-<h2 id="pilot"><span lang="ru">Пилотный прогон: Екатеринбург, 349 га у водохранилища</span><span lang="en">Pilot run: Yekaterinburg, 349 ha by a reservoir</span></h2>
+<h3 class="h3big" id="pilot"><span lang="ru">Пилотный прогон: Екатеринбург, 349 га у водохранилища</span><span lang="en">Pilot run: Yekaterinburg, 349 ha by a reservoir</span></h3>
 <p lang="ru">Первый публичный прогон. Задача заказчика — около 8 млн м² программы и работа в языке признанных мастеров; всё остальное система решала сама: фигура территории, три замысла, кварталы, высотность, экономика.</p><p lang="en">The first public run. The brief: about 8 million m² of programme in the language of recognised masters; everything else — site figure, three concepts, blocks, heights, economics — was decided by the system.</p>
 <figure><img src="img/genplan.jpg" alt="masterplan" loading="lazy"><figcaption><span lang="ru">Выбранный замысел «Зелёные зубья»: кварталы, улицы с профилями, активные первые этажи, зелёный каркас.</span><span lang="en">The chosen concept “Green teeth”: blocks, streets with cross-sections, active ground floors, green network.</span></figcaption></figure>
 <div class="grid"><figure><img src="img/genplan_v1.jpg" alt="v1" loading="lazy"></figure><figure><img src="img/genplan_v3.jpg" alt="v3" loading="lazy"></figure></div>
 <p lang="ru">Три замысла отбирались честно: критик по тексту, жюри по карте. Выбран не самый красивый и не самый прибыльный (ROI 21% против 35%), а самый сбалансированный: больше всего земли под жильё, парки почти по норме, самая низкая этажность.</p><p lang="en">Concepts were judged twice: by a critic on the text and by a jury on the map. The winner was neither the prettiest nor the most profitable (ROI 21% vs 35%), but the most balanced: the most land for housing, parks almost at the norm, the lowest heights.</p>
 <figure><img src="img/all3d.jpg" alt="massing" loading="lazy"><figcaption><span lang="ru">Весь массинг выбранного варианта: лучший замысел каждой жилой ячейки, белая макетная подача.</span><span lang="en">Full massing of the chosen option: the best concept for each housing cell, white-model presentation.</span></figcaption></figure>
-<h3><span lang="ru">Экономический гейт: как программа стала прибыльной</span><span lang="en">Economic gate: how the programme became profitable</span></h3>
+<h4 class="h4sec"><span lang="ru">Экономический гейт: как программа стала прибыльной</span><span lang="en">Economic gate: how the programme became profitable</span></h4>
 <p lang="ru">Программа заказчика как есть давала минус 1,3% маржи. Гейт довёл её до цели за четыре хода и честно назвал условия: проект прибылен только если выполнены все четыре.</p><p lang="en">The client’s programme as given showed a −1.3% margin. The gate reached the target in four moves and stated the conditions plainly: the project is profitable only if all four hold.</p>
 <ol class="steps"><li><span lang="ru">программа как есть — маржа −1,3%</span><span lang="en">programme as given — margin −1.3%</span></li>
 <li><span lang="ru">цена жилья +15% к прогнозу: позиционирование выше рынка (вода, среда, стили) — 10,3%</span><span lang="en">housing price +15% over forecast: premium positioning (water, setting, styles) — 10.3%</span></li>
@@ -156,18 +236,117 @@ model-viewer{display:block}
 <figure><img src="img/finmodel.jpg" alt="finmodel" loading="lazy"><figcaption><span lang="ru">Поток денег по кварталам и очередям.</span><span lang="en">Cash flow by quarter and phase.</span></figcaption></figure>
 <p><span lang="ru">Буклет пилотного прогона</span><span lang="en">Pilot run booklet</span>: <a href="booklet.pdf">PDF</a><span lang="ru"></span><span lang="en"> (Russian)</span></p>
 
+
+<h2 id="check"><span lang="ru">Проверка рабочей документации</span><span lang="en">Checking working drawings</span></h2>
+<p lang="ru">Вторая точка контура. Пилот в СберСити, октябрь 2026: один корпус жилого объекта, стадия РД, листы берутся прямо из среды общих данных (Pilot-BIM). ИИ-инспектор читает лист — и текст, и графику, — находит требования, которые к нему относятся, сверяет и выпускает отчёт по разделу. Независимый контролёр перепроверяет каждое нарушение; где они расходятся, вопрос уходит специалисту.</p><p lang="en">The second point of the loop. A pilot at SberCity, October 2026: one building of a residential project, working-drawing stage, sheets taken straight from the common data environment (Pilot-BIM). An AI inspector reads each sheet — text and graphics — finds the requirements that apply, checks them and issues a report per discipline. An independent controller re-checks every violation; where the two disagree, the question goes to a specialist.</p>
+<div class="kpi">
+<div><b>54 → 12 392</b><span lang="ru">документа стандартов → требований, 95% — дословная цитата</span><span lang="en">standard documents → requirements, 95% verbatim quotes</span></div>
+<div><b>129</b><span lang="ru">внешних норм, статус проверен: 83 действуют, 25 заменены, 4 отменены</span><span lang="en">external codes, status checked: 83 in force, 25 superseded, 4 withdrawn</span></div>
+<div><b>377</b><span lang="ru">листов, 6 разделов, 32 тома за один прогон</span><span lang="en">sheets, 6 disciplines, 32 volumes in one run</span></div>
+<div><b>3,8 мин</b><span lang="ru">на лист, 8 томов параллельно</span><span lang="en">per sheet, 8 volumes in parallel</span></div>
+<div><b>146 · 44 · 52</b><span lang="ru">подтверждено · нарушено · спорных</span><span lang="en">confirmed · violated · disputed</span></div>
+<div><b>809</b><span lang="ru">«нет данных»: параметра нет на листах раздела</span><span lang="en">“no data”: the parameter is not on the discipline’s sheets</span></div>
+</div>
+<p lang="ru">Отчёт по каждому разделу: пункт стандарта, дословная цитата, факт на листе, фрагмент чертежа с рамкой и ссылка «открыть лист». Проверить вывод системы можно за минуту, не открывая том.</p><p lang="en">A report per discipline: the clause, its verbatim quote, the fact on the sheet, a framed drawing fragment and an “open sheet” link. A reviewer can verify the system’s conclusion in a minute without opening the volume.</p>
+<h4 class="h4sec"><span lang="ru">Четыре примера из пилота</span><span lang="en">Four examples from the pilot</span></h4>
+<div class="grid2 ex">
+<figure><img src="img/chk_ar.jpg" alt="kitchen width" loading="lazy"><figcaption><span lang="ru"><b>Размер на плане.</b> Стандарт: ширина кухни-столовой не менее 3,6 м. Система прочитала размерные цепочки на кладочном плане: 3 400 и 3 540 мм в двух квартирах. Нарушение подтверждено.</span><span lang="en"><b>A dimension on the plan.</b> Standard: kitchen-dining width at least 3.6 m. The system read the dimension chains on the masonry plan: 3,400 and 3,540 mm in two apartments. Violation confirmed.</span></figcaption></figure>
+<figure><img src="img/chk_vk6.jpg" alt="fire collars" loading="lazy"><figcaption><span lang="ru"><b>То, чего нет.</b> Стандарт требует противопожарные манжеты на дренажных стояках в местах прохода через перекрытия. Стояки из полипропилена есть, манжет на схеме нет. Система ищет не только нарисованное, но и то, что должно быть нарисовано.</span><span lang="en"><b>What is missing.</b> The standard requires fire collars on drainage risers where they pass through floors. Polypropylene risers are shown, collars are not. The system looks not only for what is drawn but for what should be.</span></figcaption></figure>
+<figure><img src="img/chk_vk13.jpg" alt="disputed case" loading="lazy"><figcaption><span lang="ru"><b>Спорный вопрос.</b> Инспектор: «циркуляция ГВС есть, соответствует». Контролёр: «фрагменты показывают Т3, а не Т4, циркуляция не доказана». Система не выбирает, кто прав, — помечает вопрос как спорный и отдаёт человеку.</span><span lang="en"><b>A disputed case.</b> Inspector: “hot-water circulation is there, compliant”. Controller: “the fragments show T3, not T4; circulation is not proven”. The system does not pick a side — it flags the question and hands it to a person.</span></figcaption></figure>
+<figure><img src="img/chk_eom.jpg" alt="single-line diagram" loading="lazy"><figcaption><span lang="ru"><b>Схема против стандарта.</b> Стандарт запрещает розетки в колясочных. На однолинейной схеме ВРУ система нашла отходящую линию с розетками, прочитала кабель и автомат и зафиксировала противоречие.</span><span lang="en"><b>Diagram vs standard.</b> The standard forbids sockets in stroller rooms. On the single-line diagram the system found an outgoing line with sockets, read the cable and breaker and recorded the conflict.</span></figcaption></figure>
+</div>
+<h4 class="h4sec"><span lang="ru">Как это выглядит в отчёте</span><span lang="en">What it looks like in the report</span></h4>
+<p lang="ru">Восемь записей из отчётов пилота в том виде, в каком их видит проверяющий: требование, факт на листе, вывод контролёра и фрагмент чертежа с рамкой. Шифры альбомов и пунктов стандартов убраны.</p><p lang="en">Eight entries from the pilot reports as a reviewer sees them: the requirement, the fact on the sheet, the controller’s verdict and the framed drawing fragment. Volume codes and clause numbers are removed.</p>
+<div class="car" id="repcar"><button class="car-btn prev" aria-label="prev">‹</button><ul class="car-track"><li class="fc viol"><div class="fc-text">
+<div class="fc-head"><span class="fc-disc"><span lang="ru">АР</span><span lang="en">Architecture</span></span><span class="fc-badge"><span lang="ru">Нарушение</span><span lang="en">Violation</span></span></div>
+<h5><span lang="ru">Ширина кухонь, гостиных, кухонь-столовых — не менее 3,6 м</span><span lang="en">Kitchen, living and kitchen-dining rooms at least 3.6 m wide</span></h5>
+<p class="fc-req"><span><span lang="ru">Требование организации</span><span lang="en">Company requirement</span></span><span lang="ru">Для кухонь, гостиных, кухонь-столовых ширина комнаты принимается не менее 3,6 м.</span><span lang="en">For kitchens, living rooms and kitchen-dining rooms the room width is taken as at least 3.6 m.</span></p>
+<p class="fc-fact"><span><span lang="ru">Факт на листе</span><span lang="en">On the sheet</span></span><span lang="ru">кухня-столовая кв. 3 — 3 400 мм; кв. 1 — 3 540 мм</span><span lang="en">kitchen-dining, apt. 3 — 3,400 mm; apt. 1 — 3,540 mm</span></p>
+<p class="fc-ctrl"><span><span lang="ru">Контролёр</span><span lang="en">Controller</span></span><span lang="ru">Подтверждаю. На плане кухни-столовые кв. 3 и кв. 1 имеют ширину 3 400 и 3 540 мм, меньше требуемых 3 600. Кв. 4 (3 695) и кв. 5 (3 770) соответствуют.</span><span lang="en">Confirmed. On the plan the kitchen-dining rooms of apts. 3 and 1 are 3,400 and 3,540 mm wide, below the required 3,600. Apts. 4 (3,695) and 5 (3,770) comply.</span></p>
+</div><figure class="fc-img"><img src="img/frag_kitchen.jpg" alt="" loading="lazy"><figcaption><span lang="ru">Фрагмент листа из отчёта; рамка — место проверки</span><span lang="en">Sheet fragment from the report; the frame marks the checked spot</span></figcaption></figure></li>
+<li class="fc viol"><div class="fc-text">
+<div class="fc-head"><span class="fc-disc"><span lang="ru">ВК</span><span lang="en">Plumbing</span></span><span class="fc-badge"><span lang="ru">Нарушение</span><span lang="en">Violation</span></span></div>
+<h5><span lang="ru">Дренажная канализация — из полипропилена, с противопожарными манжетами в проходах через перекрытия</span><span lang="en">Drainage pipework in polypropylene with fire collars at floor penetrations</span></h5>
+<p class="fc-req"><span><span lang="ru">Требование организации</span><span lang="en">Company requirement</span></span><span lang="ru">Сети дренажной канализации надземной части здания выполняются из полипропиленовых труб с установкой в местах прохода через межэтажные перекрытия противопожарных манжет.</span><span lang="en">Above-ground drainage networks are made of polypropylene pipes with fire collars installed where they pass through floor slabs.</span></p>
+<p class="fc-fact"><span><span lang="ru">Факт на листе</span><span lang="en">On the sheet</span></span><span lang="ru">противопожарные манжеты не найдены</span><span lang="en">fire collars not found</span></p>
+<p class="fc-ctrl"><span><span lang="ru">Контролёр</span><span lang="en">Controller</span></span><span lang="ru">Подтверждаю. На схемах стояков К4 указаны полипропиленовые трубы, но обозначений противопожарных манжет в местах прохода через перекрытия нет.</span><span lang="en">Confirmed. The K4 riser schematics show polypropylene pipes, but no fire-collar symbols at floor penetrations.</span></p>
+</div><figure class="fc-img"><img src="img/frag_sleeves.jpg" alt="" loading="lazy"><figcaption><span lang="ru">Фрагмент листа из отчёта; рамка — место проверки</span><span lang="en">Sheet fragment from the report; the frame marks the checked spot</span></figcaption></figure></li>
+<li class="fc viol"><div class="fc-text">
+<div class="fc-head"><span class="fc-disc"><span lang="ru">АР</span><span lang="en">Architecture</span></span><span class="fc-badge"><span lang="ru">Нарушение</span><span lang="en">Violation</span></span></div>
+<h5><span lang="ru">Минимальный размер жилой комнаты — 12 м²</span><span lang="en">Minimum living-room area 12 m²</span></h5>
+<p class="fc-req"><span><span lang="ru">Требование организации</span><span lang="en">Company requirement</span></span><span lang="ru">Минимальный размер жилых комнат: 12 м² для классов balanced / optimum, 14 м² для advanced / superb.</span><span lang="en">Minimum living-room area: 12 m² for balanced / optimum, 14 m² for advanced / superb.</span></p>
+<p class="fc-fact"><span><span lang="ru">Факт на листе</span><span lang="en">On the sheet</span></span><span lang="ru">жилая комната 11,76 м²; жилая комната 11,73 м²</span><span lang="en">living room 11.76 m²; living room 11.73 m²</span></p>
+<p class="fc-ctrl"><span><span lang="ru">Контролёр</span><span lang="en">Controller</span></span><span lang="ru">Подтверждаю. В квартире 2 две жилые комнаты площадью 11,76 и 11,73 м², меньше минимальных 12 м².</span><span lang="en">Confirmed. Apartment 2 has two living rooms of 11.76 and 11.73 m², below the 12 m² minimum.</span></p>
+</div><figure class="fc-img"><img src="img/frag_room.jpg" alt="" loading="lazy"><figcaption><span lang="ru">Фрагмент листа из отчёта; рамка — место проверки</span><span lang="en">Sheet fragment from the report; the frame marks the checked spot</span></figcaption></figure></li>
+<li class="fc viol"><div class="fc-text">
+<div class="fc-head"><span class="fc-disc"><span lang="ru">СС</span><span lang="en">Telecom</span></span><span class="fc-badge"><span lang="ru">Нарушение</span><span lang="en">Violation</span></span></div>
+<h5><span lang="ru">Вертикальные кабельные шахты — под лоток не менее 400×150 мм</span><span lang="en">Vertical cable shafts sized for a tray of at least 400×150 mm</span></h5>
+<p class="fc-req"><span><span lang="ru">Требование организации</span><span lang="en">Company requirement</span></span><span lang="ru">Внутреннее пространство стояка должно обеспечить монтаж кабельного лотка не менее 400×150 мм; количество стояков — не меньше количества секций здания.</span><span lang="en">The shaft must accommodate a cable tray of at least 400×150 mm; the number of shafts must not be less than the number of building sections.</span></p>
+<p class="fc-fact"><span><span lang="ru">Факт на листе</span><span lang="en">On the sheet</span></span><span lang="ru">лоток 300×50 мм в разделе сетей связи; вертикальная прокладка — в лотках по разделу ЭОМ, сечение не задано</span><span lang="en">300×50 mm tray in the telecom section; vertical runs in trays per the electrical section, cross-section not specified</span></p>
+<p class="fc-ctrl"><span><span lang="ru">Контролёр</span><span lang="en">Controller</span></span><span lang="ru">Подтверждаю. В разъяснениях указан лоток 300×50, вертикальная прокладка отнесена к ЭОМ без размеров; требуемое сечение 400×150 не подтверждено.</span><span lang="en">Confirmed. The notes specify a 300×50 tray and refer vertical runs to the electrical section without sizes; the required 400×150 is not confirmed.</span></p>
+</div><figure class="fc-img"><img src="img/frag_tray.jpg" alt="" loading="lazy"><figcaption><span lang="ru">Фрагмент листа из отчёта; рамка — место проверки</span><span lang="en">Sheet fragment from the report; the frame marks the checked spot</span></figcaption></figure></li>
+<li class="fc viol"><div class="fc-text">
+<div class="fc-head"><span class="fc-disc"><span lang="ru">ОВ</span><span lang="en">HVAC</span></span><span class="fc-badge"><span lang="ru">Нарушение</span><span lang="en">Violation</span></span></div>
+<h5><span lang="ru">Дренаж от фанкойлов МОП выполняется в полном объёме в разделе ОВиК</span><span lang="en">Fan-coil drainage in common areas is fully designed within the HVAC section</span></h5>
+<p class="fc-req"><span><span lang="ru">Требование организации</span><span lang="en">Company requirement</span></span><span lang="ru">Дренажный трубопровод от фанкойлов МОП выполняется в полном объёме в разделе ОВиК.</span><span lang="en">Drainage pipework from fan-coils in common areas is designed in full within the HVAC section.</span></p>
+<p class="fc-fact"><span><span lang="ru">Факт на листе</span><span lang="en">On the sheet</span></span><span lang="ru">дренаж от фанкойлов — самотёком в дренажные стояки через капельную воронку, «см. проект ВК»</span><span lang="en">fan-coil drainage by gravity into drainage risers via a drip funnel, “see plumbing design”</span></p>
+<p class="fc-ctrl"><span><span lang="ru">Контролёр</span><span lang="en">Controller</span></span><span lang="ru">Подтверждаю. В примечании 3 дренаж фанкойлов отнесён к разделу ВК, а не выполнен в разделе ОВиК.</span><span lang="en">Confirmed. Note 3 assigns fan-coil drainage to the plumbing section instead of designing it within HVAC.</span></p>
+</div><figure class="fc-img"><img src="img/frag_drain.jpg" alt="" loading="lazy"><figcaption><span lang="ru">Фрагмент листа из отчёта; рамка — место проверки</span><span lang="en">Sheet fragment from the report; the frame marks the checked spot</span></figcaption></figure></li>
+<li class="fc viol"><div class="fc-text">
+<div class="fc-head"><span class="fc-disc"><span lang="ru">АР</span><span lang="en">Architecture</span></span><span class="fc-badge"><span lang="ru">Нарушение</span><span lang="en">Violation</span></span></div>
+<h5><span lang="ru">Ширина оконных проёмов типовых этажей — 1 800–2 400 мм</span><span lang="en">Window openings on typical floors 1,800–2,400 mm wide</span></h5>
+<p class="fc-req"><span><span lang="ru">Требование организации</span><span lang="en">Company requirement</span></span><span lang="ru">Ширина оконных проёмов: 1 800–2 400 мм для классов balanced и optimum; 1 800–3 000 мм для advanced и superb.</span><span lang="en">Window opening width: 1,800–2,400 mm for balanced and optimum; 1,800–3,000 mm for advanced and superb.</span></p>
+<p class="fc-fact"><span><span lang="ru">Факт на листе</span><span lang="en">On the sheet</span></span><span lang="ru">оконный проём марки 20 — 1 200×2 110 мм</span><span lang="en">window opening type 20 — 1,200×2,110 mm</span></p>
+<p class="fc-ctrl"><span><span lang="ru">Контролёр</span><span lang="en">Controller</span></span><span lang="ru">Подтверждаю. В ведомости проёмов типовых этажей марка 20 имеет ширину 1 200 мм, меньше минимальных 1 800.</span><span lang="en">Confirmed. In the opening schedule for typical floors, type 20 is 1,200 mm wide, below the 1,800 minimum.</span></p>
+</div><figure class="fc-img"><img src="img/frag_window.jpg" alt="" loading="lazy"><figcaption><span lang="ru">Фрагмент листа из отчёта; рамка — место проверки</span><span lang="en">Sheet fragment from the report; the frame marks the checked spot</span></figcaption></figure></li>
+<li class="fc viol"><div class="fc-text">
+<div class="fc-head"><span class="fc-disc"><span lang="ru">АИ</span><span lang="en">Interiors</span></span><span class="fc-badge"><span lang="ru">Нарушение</span><span lang="en">Violation</span></span></div>
+<h5><span lang="ru">Двери в небольшие помещения открываются наружу</span><span lang="en">Doors to small rooms open outward</span></h5>
+<p class="fc-req"><span><span lang="ru">Требование организации</span><span lang="en">Company requirement</span></span><span lang="ru">Дверь в небольшие помещения — открываем наружу.</span><span lang="en">Doors to small rooms open outward.</span></p>
+<p class="fc-fact"><span><span lang="ru">Факт на листе</span><span lang="en">On the sheet</span></span><span lang="ru">дверь мойки 4,32 м² открывается внутрь помещения</span><span lang="en">the door of a 4.32 m² utility room opens inward</span></p>
+<p class="fc-ctrl"><span><span lang="ru">Контролёр</span><span lang="en">Controller</span></span><span lang="ru">Подтверждаю. На фрагменте дуга двери расположена внутри помещения — дверь открывается внутрь, для небольшого помещения это нарушает требование.</span><span lang="en">Confirmed. On the fragment the door swing is inside the room — the door opens inward, which breaks the requirement for a small room.</span></p>
+</div><figure class="fc-img"><img src="img/frag_door.jpg" alt="" loading="lazy"><figcaption><span lang="ru">Фрагмент листа из отчёта; рамка — место проверки</span><span lang="en">Sheet fragment from the report; the frame marks the checked spot</span></figcaption></figure></li>
+<li class="fc amb"><div class="fc-text">
+<div class="fc-head"><span class="fc-disc"><span lang="ru">ВК</span><span lang="en">Plumbing</span></span><span class="fc-badge"><span lang="ru">Спорный вопрос</span><span lang="en">Disputed</span></span></div>
+<h5><span lang="ru">Горячее водоснабжение — с циркуляцией по стоякам и магистралям</span><span lang="en">Hot water with circulation through risers and mains</span></h5>
+<p class="fc-req"><span><span lang="ru">Требование организации</span><span lang="en">Company requirement</span></span><span lang="ru">Горячее водоснабжение предусматривается с циркуляцией по стоякам и магистралям.</span><span lang="en">Hot-water supply is designed with circulation through risers and mains.</span></p>
+<p class="fc-fact"><span><span lang="ru">Факт на листе</span><span lang="en">On the sheet</span></span><span lang="ru">инспектор: «соответствует» — переходы на Т4 и таблица компенсаторов; контролёр: фрагменты показывают систему Т3, а не Т4, циркуляция не доказана</span><span lang="en">inspector: “compliant” — transitions to T4 and the compensator table; controller: the fragments show system T3, not T4, circulation is not proven</span></p>
+<p class="fc-ctrl"><span><span lang="ru">Контролёр</span><span lang="en">Controller</span></span><span lang="ru">Спорный вопрос. Две роли прочитали лист по-разному; система не выбирает, кто прав, и отдаёт вопрос специалисту.</span><span lang="en">Disputed. Two roles read the sheet differently; the system does not pick a side and hands the question to a specialist.</span></p>
+</div><figure class="fc-img"><img src="img/frag_dispute.jpg" alt="" loading="lazy"><figcaption><span lang="ru">Фрагмент листа из отчёта; рамка — место проверки</span><span lang="en">Sheet fragment from the report; the frame marks the checked spot</span></figcaption></figure></li></ul><button class="car-btn next" aria-label="next">›</button><div class="car-dots"></div></div>
+<h4 class="h4sec"><span lang="ru">Что дальше</span><span lang="en">What comes next</span></h4>
+<ul><li><span lang="ru">Сверка 2D и 3D: расхождения чертежей с информационной моделью — один из главных источников ошибок на стройке.</span><span lang="en">2D vs 3D: discrepancies between drawings and the information model are a major source of site errors.</span></li>
+<li><span lang="ru">Проверка ревизий: что изменилось между версиями и закрыты ли выданные замечания.</span><span lang="en">Revision checks: what changed between versions and whether issued comments were closed.</span></li>
+<li><span lang="ru">Спецификации против ведомостей объёмов и сметы.</span><span lang="en">Specifications against bills of quantities and the estimate.</span></li>
+<li><span lang="ru">Фоновый мониторинг среды общих данных: новый лист проверяется в момент загрузки, ответственный получает уведомление.</span><span lang="en">Background monitoring of the common data environment: a new sheet is checked on upload and the owner is notified.</span></li></ul>
+
+<h2 id="asbuilt"><span lang="ru">Исполнительная документация</span><span lang="en">As-built documentation</span></h2>
+<div class="grid2 asb"><div>
+<p lang="ru">Третья точка контура — StroyAct: проверка исполнительной документации против проекта. Акты освидетельствования скрытых работ и накопительные ведомости сверяются с рабочими чертежами и между собой: объёмы, даты, состав работ, ссылки на листы.</p><p lang="en">The third point of the loop is StroyAct: checking as-built records against the design. Hidden-work certificates and cumulative statements are verified against working drawings and against each other: quantities, dates, scope, sheet references.</p>
+<p lang="ru">Та же логика, что и в проверке чертежей: требование, факт в документе, улика и вывод. Разница в том, что здесь факт — это стройка, а не лист.</p><p lang="en">The same logic as in drawing checks: a requirement, the fact in the document, the evidence and a conclusion. The difference is that here the fact is the site, not the sheet.</p>
+<p lang="ru">Следующий шаг — сшить исполнительную с проверкой чертежей и моделью: тогда отклонение от проекта видно в момент подписания акта.</p><p lang="en">The next step is to stitch as-built records to drawing checks and the model: then a deviation from the design is visible the moment a certificate is signed.</p>
+</div>
+<figure><img src="img/chk_stroyact.jpg" alt="StroyAct" loading="lazy"><figcaption><span lang="ru">StroyAct: накопительная ведомость с проверкой против проекта.</span><span lang="en">StroyAct: a cumulative statement checked against the design.</span></figcaption></figure>
+</div>
+
+<h2 id="expert"><span lang="ru">Для экспертизы</span><span lang="en">For expert review</span></h2>
+<p lang="ru">Тот же механизм работает с требованиями экспертизы вместо корпоративных стандартов: комплект проверяется до подачи, а не после первого круга замечаний. Заказчик видит список расхождений с пунктами норм и фрагментами листов, пока документация ещё у проектировщика.</p><p lang="en">The same mechanism works with expert-review requirements instead of corporate standards: the set is checked before submission, not after the first round of comments. The client sees the list of discrepancies with code clauses and sheet fragments while the documentation is still with the designer.</p>
+<ul><li><span lang="ru">Меньше кругов экспертизы: типовые замечания закрываются до подачи.</span><span lang="en">Fewer review rounds: typical comments are closed before submission.</span></li>
+<li><span lang="ru">Каждое замечание — с пунктом нормы, цитатой и фрагментом листа, поэтому спор с проектировщиком короче.</span><span lang="en">Every comment comes with the clause, its quote and a sheet fragment, so the argument with the designer is shorter.</span></li>
+<li><span lang="ru">База требований экспертизы заводится один раз и работает на всех объектах компании.</span><span lang="en">The review requirement base is built once and works across all the company’s projects.</span></li></ul>
 <h2 id="limits"><span lang="ru">Честные ограничения</span><span lang="en">Honest limits</span></h2>
 <ul><li><span lang="ru">Региональные нормы пока не заведены: проверка идёт по федеральным СП и СанПиН, региональную специфику подтверждает проектировщик.</span><span lang="en">Regional codes are not yet encoded: checks run on federal codes; a designer confirms regional specifics.</span></li>
 <li><span lang="ru">Объёмное решение собирается не для всех кварталов: в свежем прогоне — 77 из 85; незакрытые система показывает, а не прячет.</span><span lang="en">Massing is not solved for every block — 77 of 85 in the latest run; the gaps are shown, not hidden.</span></li>
 <li><span lang="ru">Средняя инсоляция и отклонения от целевой этажности приводятся без подгонки под норму.</span><span lang="en">Average daylight compliance and deviations from target heights are reported as is, not tuned to the norm.</span></li>
 <li><span lang="ru">На глубоких плитах доля общих зон доходит до 24–30%; каре и подковы пока требуют доработки планировок.</span><span lang="en">On deep floor plates common areas reach 24–30%; courtyard and horseshoe blocks still need layout work.</span></li>
 <li><span lang="ru">Квартиры без расчёта инсоляции оцениваются по азимуту фасада; шум и вид на воду не учитываются.</span><span lang="en">Apartments without a daylight calculation are scored by façade azimuth; noise and water views are not yet modelled.</span></li>
-<li><span lang="ru">Числа без источника в рецептах формы и фасадов явно помечены как допущения.</span><span lang="en">Any number in form and façade recipes without a source is explicitly flagged as an assumption.</span></li></ul>
+<li><span lang="ru">Числа без источника в рецептах формы и фасадов явно помечены как допущения.</span><span lang="en">Any number in form and façade recipes without a source is explicitly flagged as an assumption.</span></li>
+<li><span lang="ru">В проверке документации бывают ложные срабатывания: коридор 1 520 мм система назвала «не компактным», четыре квартиры на листе-фрагменте — «мало». Поэтому есть вторая роль и категория «спорное».</span><span lang="en">Drawing checks produce false positives: a 1,520 mm corridor was called “not compact”, four apartments on a fragment sheet — “too few”. Hence the second role and the “disputed” category.</span></li>
+<li><span lang="ru">Точность проверки на размеченном наборе ещё не измерена: доля найденных и пропущенных нарушений будет посчитана на томе с известными замечаниями.</span><span lang="en">Checking accuracy on a labelled set is not yet measured: recall and precision will be computed on a volume with known comments.</span></li></ul>
 
 <h2 id="author"><span lang="ru">Об авторе</span><span lang="en">About the author</span></h2>
 <div class="author"><img src="img/author.jpg" alt="Vadim Stepanov"><div>
-<p lang="ru"><b>Вадим Степанов</b> — 17 лет в строительстве и цифровых технологиях: информационное моделирование, цифровые двойники, ИИ в девелопменте. Руководит цифровой трансформацией крупного девелопера; эксперт НИИСФ РААСН и технического комитета ТК 505 «Информационное моделирование», соавтор национального стандарта.</p><p lang="en"><b>Vadim Stepanov</b> — 17 years in construction and digital technology: BIM, digital twins, AI in real estate development. Leads digital transformation at a major developer; expert at the Research Institute of Building Physics (NIISF RAASN) and member of the national BIM standards committee TC 505, co-author of a national standard.</p>
-<p lang="ru">«Архитектор в машине» — его личный исследовательский проект: архитектуру агентов, геометрическое ядро, нормы как код и базу знаний он спроектировал и собрал сам.</p><p lang="en">“Architect in the Machine” is his independent research project: he designed and built the agent architecture, the geometry core, codes-as-code and the knowledge base himself.</p>
+<p lang="ru"><b>Вадим Степанов</b> — 17 лет в строительстве и цифровых технологиях: информационное моделирование, цифровые двойники, ИИ в девелопменте. Руководит цифровой трансформацией крупного девелопера, запустил ИИ-проверку рабочей документации в СберСити; эксперт НИИСФ РААСН и технического комитета ТК 505 «Информационное моделирование», соавтор национального стандарта.</p><p lang="en"><b>Vadim Stepanov</b> — 17 years in construction and digital technology: BIM, digital twins, AI in real estate development. Leads digital transformation at a major developer and launched AI checking of working drawings at SberCity; expert at the Research Institute of Building Physics (NIISF RAASN) and member of the national BIM standards committee TC 505, co-author of a national standard.</p>
+<p lang="ru">«Архитектор в машине» — его личный исследовательский проект: архитектуру агентов, геометрическое ядро, нормы как код, базу знаний и контур проверки он спроектировал и собрал сам.</p><p lang="en">“Architect in the Machine” is his independent research project: he designed and built the agent architecture, the geometry core, codes-as-code, the knowledge base and the checking loop himself.</p>
 <p class="small"><a href="https://niisf.org/biblio/glavnaya/stepanov-vadim-valerevich" rel="noopener"><span lang="ru">Биография на странице НИИСФ РААСН</span><span lang="en">Biography at NIISF RAASN (in Russian)</span></a> · <a href="https://www.linkedin.com/in/vadim-stepanov-bim-vdc/" rel="noopener">LinkedIn</a></p>
 </div></div>
 <p class="contacts"><b><span lang="ru">Связаться:</span><span lang="en">Contact:</span></b> <a href="mailto:v.stepanov.aec@gmail.com">v.stepanov.aec@gmail.com</a> · Telegram <a href="https://t.me/Vadim_Stepanov_AEC" rel="noopener">@Vadim_Stepanov_AEC</a> · <a href="tel:+79032507609">+7 903 250-76-09</a></p>
@@ -183,7 +362,7 @@ model-viewer{display:block}
     try{var s=localStorage.getItem(KEY); if(s==='ru'||s==='en') return s;}catch(e){}
     return (navigator.language||'').toLowerCase().indexOf('ru')===0?'ru':'en';
   }
-  var TITLES={ru:'Архитектор в машине — генеративное проектирование жилых районов',en:'Architect in the Machine — generative design of residential districts'};
+  var TITLES={ru:'Архитектор в машине — ИИ-контур проектирования и контроля',en:'Architect in the Machine — an AI loop for design and control'};
   function set(l){
     root.setAttribute('data-lang',l); root.lang=l; document.title=TITLES[l];
     document.querySelectorAll('.langsw button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.set===l)});
